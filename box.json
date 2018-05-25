@@ -1,0 +1,41 @@
+{
+    "name":"CFWheels Example App",
+    "version":"0.0.0",
+    "author":"Tom King",
+    "location":"neokoenig/cfwheels-example-app#v0.0.0",
+    "directory":"",
+    "createPackageDirectory":false,
+    "packageDirectory":"",
+    "homepage":"https://github.com/neokoenig/cfwheels-example-app/",
+    "documentation":"https://github.com/neokoenig/cfwheels-example-app/",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/neokoenig/cfwheels-example-app"
+    },
+    "bugs":"https://github.com/neokoenig/cfwheels-example-app/issues",
+    "slug":"cfwheels",
+    "shortDescription":"CFWheels MVC Framework",
+    "changelog":"https://github.com/neokoenig/cfwheels-example-app/CHANGELOG.md",
+    "type":"mvc",
+    "keywords":[
+        "mvc",
+        "rails",
+        "wheels",
+        "cfwheels"
+    ],
+    "private":false,
+    "license":[
+        {
+            "type":"Apache License 2.0",
+            "URL":"https://github.com/neokoenig/cfwheels-example-app/LICENSE"
+        }
+    ],
+    "dependencies":{
+        "cfwheels-flashmessages-bootstrap":"^1.0.2",
+        "cfwheels-authenticateThis":"^1.0.1"
+    },
+    "installPaths":{
+        "cfwheels-flashmessages-bootstrap":"plugins/FlashMessagesBootstrap",
+        "cfwheels-authenticateThis":"plugins/authenticateThis"
+    }
+}
