@@ -1,0 +1,16 @@
+{
+    "name":"exampleapp",
+    "web":{
+        "http":{
+            "host":"localhost",
+            "port":60050
+        },
+        "rewrites":{
+            "enable":true,
+            "config":"urlrewrite.xml"
+        }
+    },
+    "app":{
+        "cfengine":"lucee@5"
+    }
+}

@@ -32,10 +32,12 @@
     ],
     "dependencies":{
         "cfwheels-flashmessages-bootstrap":"^1.0.2",
-        "cfwheels-authenticateThis":"^1.0.1"
+        "cfwheels-authenticateThis":"^1.0.1",
+        "cfwheels-js-confirm":"^1.0.5"
     },
     "installPaths":{
         "cfwheels-flashmessages-bootstrap":"plugins/FlashMessagesBootstrap",
-        "cfwheels-authenticateThis":"plugins/authenticateThis"
+        "cfwheels-authenticateThis":"plugins/authenticateThis",
+        "cfwheels-js-confirm":"plugins/jsconfirm"
     }
 }

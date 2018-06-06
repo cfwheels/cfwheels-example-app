@@ -1,0 +1,4 @@
+// Make `isActive` the only property that can be set through mass assignment operations like `updateAll()`.
+config() {
+	accessibleProperties("isActive");
+}

@@ -10,8 +10,7 @@ WEB-INF
 /manual/
 /subfolder/
 /bin/
-/migrator/sql/
-server.json
+/migrator/sql/ 
 cfwheels.*.zip
 settings.json
 .vscode

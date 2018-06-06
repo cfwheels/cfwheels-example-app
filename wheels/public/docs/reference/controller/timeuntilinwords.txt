@@ -1,0 +1,6 @@
+// Controller code.
+aLittleAhead = DateAdd("d", 365, Now());
+
+// View code.
+<!--- Will output: about 1 year --->
+#timeUntilInWords(aLittleAhead)#
