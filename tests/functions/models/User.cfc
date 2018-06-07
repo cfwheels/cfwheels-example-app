@@ -23,6 +23,21 @@ component extends="app.tests.Test" {
 		v = m.valid();
 		assert("v EQ true");
 	}
+	function test_create_validation_fails_bad_email(){
+		params= {
+			"firstname": "Joe",
+			"lastname": "Bloggs",
+			"email": "invalid",
+			"password": "validPassword123!",
+			"passwordConfirmation": "validPassword123!",
+			"terms": 1
+		}
+		m.setProperties(params);
+		v = m.valid();
+		err = m.allErrors();
+		debug("err");
+		assert("v EQ false");
+	}
 
 	function test_validation_fails(){
 		params= {
