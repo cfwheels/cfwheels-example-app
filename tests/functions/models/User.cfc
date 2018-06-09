@@ -35,7 +35,7 @@ component extends="app.tests.Test" {
 		m.setProperties(params);
 		v = m.valid();
 		err = m.allErrors();
-		debug("err");
+		//debug("err");
 		assert("v EQ false");
 	}
 
@@ -48,7 +48,7 @@ component extends="app.tests.Test" {
 		m.setProperties(params);
 		v = m.valid();
 		err = m.allErrors();
-		assert("arrayLen(err) EQ 5");
+		assert("arrayLen(err) EQ 4");
 		assert("v EQ false");
 	}
 
