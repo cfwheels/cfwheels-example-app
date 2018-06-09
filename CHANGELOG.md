@@ -3,10 +3,12 @@
 ## 0.0.2 (TBA)
 
 Second Alpha Release
+Note: Should run on Lucee 5 + ACF2016
 
 ### Bug Fixes
 
 - Email Validation on User Model now doesn't have duplicate errors
+- ACF2016 Syntax fixes
 
 ### Enhancements
 
