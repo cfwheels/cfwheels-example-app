@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.2 (TBA)
+
+Second Alpha Release
+
+### Bug Fixes
+
+- Email Validation on User Model now doesn't have duplicate errors
+
+### Enhancements
+
+- Audit logs can now be filtered by date range via Date Range Picker JS
+
 ## 0.0.1 - 06 Jun 2018
 
 Initial Alpha Release
@@ -31,7 +43,7 @@ Note: this is only tested on lucee 5 at the moment.
 
 ### Authentication
 
-- Tableless models used for Authentication 
+- Tableless models used for Authentication
 - "Local" user accounts are the default
 - This app uses session based authentication, session rotation and session invalidation
 - Sets Set Cache-Control: must-re-validate for authenticated pages
