@@ -56,7 +56,7 @@ component extends="wheels.Test" {
 			"permissions" = {
 				"accounts" = true
 			}
-		}
+		};
 	}
 
 	function logoutFakeUser(){

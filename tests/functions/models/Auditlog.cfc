@@ -8,7 +8,7 @@ component extends="app.tests.Test" {
 			"severity" = "info",
 			"createdBy" = "TestSuite",
 			"ipaddress" = "0.0.0.0"
-		}
+		};
 	}
 
 	function teardown(){

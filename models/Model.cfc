@@ -20,7 +20,7 @@ component extends="wheels.Model" {
 			"properties" = this.allChanges(),
 			"model" = getCallingModelName(),
 			"key" = this.key()
-		}
+		};
 
 		// If the calling model doesn't want us to log a sensitive value, remove it.
 		if(structKeyExists(this, "ignoreLogProperties")){

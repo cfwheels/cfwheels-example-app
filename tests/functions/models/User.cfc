@@ -18,7 +18,7 @@ component extends="app.tests.Test" {
 			"password": "validPassword123!",
 			"passwordConfirmation": "validPassword123!",
 			"terms": 1
-		}
+		};
 		m.setProperties(params);
 		v = m.valid();
 		assert("v EQ true");
@@ -31,7 +31,7 @@ component extends="app.tests.Test" {
 			"password": "validPassword123!",
 			"passwordConfirmation": "validPassword123!",
 			"terms": 1
-		}
+		};
 		m.setProperties(params);
 		v = m.valid();
 		err = m.allErrors();
@@ -44,7 +44,7 @@ component extends="app.tests.Test" {
 			"firstname": "Joe",
 			"password": "validPassword123!",
 			"passwordConfirmation": "validPassword123!"
-		}
+		};
 		m.setProperties(params);
 		v = m.valid();
 		err = m.allErrors();
@@ -60,7 +60,7 @@ component extends="app.tests.Test" {
 			"password": "validPassword123!",
 			"passwordConfirmation": "badlyTyped",
 			"terms": 1
-		}
+		};
 		m.setProperties(params);
 		v = m.valid();
 		err = m.allErrors();

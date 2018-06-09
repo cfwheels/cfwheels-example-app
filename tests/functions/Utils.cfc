@@ -11,6 +11,6 @@ component extends="tests.Test" {
 		str="foo.bar";
 		r=convertStringToStruct(str, "howdy");
 		assert("isStruct(r) EQ true");
-		assert("r.foo.bar EQ 'howdy'")
+		assert("r.foo.bar EQ 'howdy'");
 	}
 }

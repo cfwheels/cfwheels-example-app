@@ -167,7 +167,7 @@
     return "<span class='badge badge-#local.badgeClass#'>" & e(arguments.type) & "</span>";
   }
 
-  string function gravatar(string email, number size=80, string rating="pg", class="rounded-circle mx-auto d-block"){
+  string function gravatar(string email, numeric size=80, string rating="pg", class="rounded-circle mx-auto d-block"){
     if(len(arguments.email)){
       local.email = lcase(hash(trim(arguments.email)));
       return "<img src='http://www.gravatar.com/avatar/#local.email#?s=#arguments.size#&amp;r=#rating#' class='#arguments.class#', alt='Users Gravatar' border='0' />";

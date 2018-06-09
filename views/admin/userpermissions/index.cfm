@@ -56,7 +56,7 @@
 						#submitTag(value="Grant", class="btn btn-sm btn-warning")#
 					#endFormTag()#
 				</cfif>
-				<cfif setby == 'User'>
+				<cfif setby EQ 'User'>
 					#buttonTo(route="userPermission", text="Revoke", inputClass="btn btn-sm btn-danger", userKey=params.userkey, key=id, method="delete")#
 				</cfif>
 			</td>
