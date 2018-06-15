@@ -4,6 +4,10 @@
 //=====================================================================
 /**
 * Gets Called onApplicationStart, and loads database settings, default roles + permissions etc.
+*
+* [section: Application]
+* [category: Miscellaneous]
+*
 **/
 public function createApplicationSettings(){
 

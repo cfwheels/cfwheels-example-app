@@ -166,7 +166,17 @@
     }
     return "<span class='badge badge-#local.badgeClass#'>" & e(arguments.type) & "</span>";
   }
-
+  /**
+  * Renders a Gravatar from gravatar.com
+  *
+  * [section: Application]
+  * [category: View Helpers]
+  *
+  * @email Email of user
+  * @size px size of image
+  * @rating Limit to rating
+  * @class Image Class, defaults to bootstrap 4 rounded image
+  */
   string function gravatar(string email, number size=80, string rating="pg", class="rounded-circle mx-auto d-block"){
     if(len(arguments.email)){
       local.email = lcase(hash(trim(arguments.email)));
