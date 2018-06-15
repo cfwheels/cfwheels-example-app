@@ -86,7 +86,7 @@
     *
     * @user The User Object
     */
-    function assignPermissions(user){
+    function assignPermissions(required struct user){
         // If coming from an external auth source, it might be that the the roleid is set in active directory (for instance)
         local.rolePermissions=getRolePermissions(arguments.user.roleid);
         // Get User Permissions from local user account which override Role based permissions
