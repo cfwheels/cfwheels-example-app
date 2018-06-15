@@ -14,7 +14,7 @@ component extends="wheels.Model" {
 	/**
 	 * Attempt to log which values have changed
 	 */
-	function logChangedValues() {
+	private function logChangedValues() {
 
 		local["changed"] = {
 			"properties" = this.allChanges(),
@@ -37,7 +37,7 @@ component extends="wheels.Model" {
 	/**
 	* Simple sanitization: this could probably be improved somewhat.
 	**/
-	function sanitizeInput(string){
+	private function sanitizeInput(string){
 		local.rv = REReplaceNoCase(arguments.string, "<\ *[a-z].*?>", "", "all");
 		local.rv = REReplaceNoCase(local.rv, "<\ */\ *[a-z].*?>", "", "all");
 		local.rv = trim(htmleditFormat(local.rv));
@@ -47,7 +47,7 @@ component extends="wheels.Model" {
 	/**
 	 * Attempt to work out which model is calling a function
 	 */
-	function getCallingModelName() {
+	private function getCallingModelName() {
 		return replace(getMetaData(this)['fullname'], "wheels....models.", "", "all");
 	}
 
