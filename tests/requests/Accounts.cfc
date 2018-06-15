@@ -12,7 +12,7 @@ component extends="tests.Test" {
 		loginFakeUser();
 		params= {
 			controller="accounts", action="show"
-		}
+		};
 		r=processRequest(params=params, returnAs="struct");
 		assert("r.body CONTAINS 'Your Account'");
 		assert("r.status EQ 200");
@@ -23,7 +23,7 @@ component extends="tests.Test" {
 		logoutFakeUser();
 		params= {
 			controller="accounts", action="show"
-		}
+		};
 		r=processRequest(params=params, returnAs="struct");
 		shouldLoginRedirect();
 	}

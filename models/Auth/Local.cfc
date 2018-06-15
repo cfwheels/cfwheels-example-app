@@ -12,7 +12,7 @@ component extends="app.models.Model"
 		property(name="allowRememberMe", defaultValue=true);
 		property(name="allowUserRegistration", defaultValue=true);
 		validatesPresenceOf(properties="email,password");
-		validatesFormatOf(property="email", type="email");
+		validatesFormatOf(property="email", allowBlank=true, type="email");
 		authenticateThis(required=false);
 	}
 

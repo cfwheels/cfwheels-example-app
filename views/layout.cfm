@@ -65,6 +65,21 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 #javascriptIncludeTag("custom")#
+
+<!---
+  Additional JS Set in view files
+  Sometimes for development it's a load easier to just have a cfsavecontent block of javascript in the same file as
+  the form/page you're dealing with. As JS is loaded *after* the template, we're delaying it's execution to after
+  jQuery etc is loaded. See /views/admin/auditlogs/_filter.cfm as an example of using this.
+--->
+<cfif structKeyExists(request, "js")>
+    <cfloop collection="#request.js#" item="i">
+        <cfoutput>
+            #request.js[i]#
+        </cfoutput>
+    </cfloop>
+</cfif>
+
 </body>
 </html>
 </cfoutput>

@@ -17,8 +17,20 @@ component extends="app.controllers.Controller" {
 		param name="params.type" default="";
 		param name="params.severity" default="";
 		param name="params.page" default=1;
-		param name="params.perpage" default=50;
+		param name="params.perpage" default=100;
+		param name="params.from" default=dateFormat(dateAdd('d', -30, now()), 'yyyy-mm-dd');
+		param name="params.to" default=dateFormat(now(), 'yyyy-mm-dd');
+
 		local.where=[];
+
+		// Whilst our date range picker is passing through a year/month/day,
+		// we want to be more explicit in what date range we actually want to search
+		local.from 	= CreateDateTime(year(params.from), month(params.from), day(params.from), 0, 0, 0);
+		local.to 	= CreateDateTime(year(params.to), month(params.to), day(params.to), 23, 59, 59);
+
+		arrayAppend(local.where, "createdAt >= '#local.from#'");
+		arrayAppend(local.where, "createdAt < '#local.to#'");
+
 		if(len(params.type)){
 			arrayAppend(local.where, "type = '#params.type#'");
 		}
@@ -36,7 +48,12 @@ component extends="app.controllers.Controller" {
 				arrayAppend(local.where, whereify(local.qWhere, "OR"));
 			}
 		}
-		auditlogs=model("auditlog").findAll(where=whereify(local.where), order="createdAt DESC", perpage=params.perpage, page=params.page);
+		auditlogs=model("auditlog").findAll(
+			where=whereify(local.where),
+			order="createdAt DESC",
+			perpage=params.perpage,
+			page=params.page
+		);
 	}
 
 	/**

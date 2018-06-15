@@ -45,3 +45,9 @@ dd {
 .modal-body .boolean {    color: blue; }
 .modal-body .null {     color: magenta; }
 .modal-body .key {      color: red; }
+
+/* Report Range Picker */
+#reportrange {
+  cursor: pointer;
+  padding: 5px 10px;
+}

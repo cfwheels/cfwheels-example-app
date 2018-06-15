@@ -11,7 +11,7 @@ component extends="Model" {
 		// Properties
 		validatesPresenceOf("firstname,lastname,email");
 		validatesUniquenessOf("email");
-		validatesFormatOf("email");
+		validatesFormatOf(property="email", allowBlank=true, type="email");
 
 		// When a user is created by registration (i.e, not being created by an authenticated user)
 		// Then require the prescence of a checked terms and conditions box
