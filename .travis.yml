@@ -1,7 +1,15 @@
 language: java
 sudo: required
+services:
+  - mysql
+  - postgresql
 jdk:
   - oraclejdk8
+env:
+  matrix:
+    - CFENGINE=lucee@5  DB=MySQL DBCLASS=org.gjt.mm.mysql.Driver
+    # ACF Tests....(fails restart of server)
+    #- CFENGINE=adobe@2016 DB=MySQL PORT=3306 user=root DBCLASS=org.gjt.mm.mysql.Driver
 before_install:
   # Get Commandbox
   - sudo apt-key adv --keyserver keys.gnupg.net --recv 6DA70622
@@ -9,19 +17,34 @@ before_install:
 install:
   # Install Commandbox
   - sudo apt-get update && sudo apt-get --assume-yes install commandbox
-  # Check it's working
+  # Install Wheels CLI
   - box version
-  # Install CLI: needed to repackage the plugin to a zip on install
   - box install cfwheels-cli
-  # Install the App
+  # Install CFConfig
+  - box install commandbox-cfconfig
+  # Install CFWheels Example App from git master
   - box install cfwheels/cfwheels-example-app
 before_script:
-  # Master branch has a bunch of server.jsons we can use, default to server.json
-  - box server start
-# Type should be the name of the servername should reflect the server we've just started
+  # Create databases
+  - if [[ "$DB" == "MySQL" ]]; then mysql -e 'CREATE DATABASE exampleapp;'; fi
+  #- if [[ "$DB" == "PostgreSQL" ]]; then psql -c 'create database wheelstestdb;' -U postgres; fi
+  # Start The Server
+  - box server start cfengine=$CFENGINE
+  # Add the datasource via CFConfig
+  #- if [[ "$DB" == "H2" ]]; then box cfconfig datasource save name=wheelstestdb database=wheelstestdb dbdriver=$DB class="$DBCLASS" custom="mode=$MODE&path=./db/"  dsn="jdbc:h2:{path}{database};MODE={mode}" allow=511 clob=true blob=true; fi
+  - if [[ "$DB" == "MySQL" ]]; then box cfconfig datasource save name=exampleapp database=exampleapp dbdriver=$DB class="$DBCLASS" host=127.0.0.1 port=3306 username=travis password=""; fi
+  #- if [[ "$DB" == "PostgreSQL" ]]; then box cfconfig datasource save name=wheelstestdb database=wheelstestdb dbdriver=$DB class="$DBCLASS" host=127.0.0.1 port=5432 username=postgres password="" blob=true clob=true; fi
+  # Disable sitewide error handler for ACF
+  #- if [[ "$CFENGINE" == "adobe@11" ]]; then box cfconfig set generalErrorTemplate=""; fi
+  # Restart The Server
+  - box server restart
+  # Basically, we now run the wheels CLI test runner, pointing it to the current server
+  - box cfconfig datasource list
+  # Run DB Migrations
+  - box wheels db latest
 script: >
-  testResults="$(box wheels test type=app servername=exampleapp)";
+  testResults="$(box wheels test type=app)";
   echo "$testResults";
   if ! grep -i "\Tests Complete: All Good!" <<< $testResults;  then exit 1; fi
 notifications:
-    email: true
+    email: false
