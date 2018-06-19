@@ -34,8 +34,7 @@ before_script:
   - box cfconfig datasource list
   # Double check servername?
   - box server list
-  # Run DB Migrations
-  - box wheels db latest
+  # Run DB Migrations 
 script: >
   testResults="$(box wheels test type=app servername=exampleapp)";
   echo "$testResults";
