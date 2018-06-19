@@ -32,10 +32,10 @@ before_script:
   - box server restart
   # Basically, we now run the wheels CLI test runner, pointing it to the current server
   - box cfconfig datasource list
-  # Run DB Migrations
-  - box wheels db latest
   # Double check servername?
   - box server list
+  # Run DB Migrations
+  - box wheels db latest
 script: >
   testResults="$(box wheels test type=app servername=exampleapp)";
   echo "$testResults";
