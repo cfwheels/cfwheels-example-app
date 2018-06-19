@@ -7,14 +7,14 @@ applications; it aims to demonstrate some of the framework's features such as Da
 
 ## Installation
 
-See [Installation](https://github.com/neokoenig/cfwheels-example-app/wiki/Installation)
+See [Installation](https://github.com/cfwheels/cfwheels-example-app/wiki/Installation)
 
 ## Documentation
 
-See the [Wiki](https://github.com/neokoenig/cfwheels-example-app/wiki/Installation)
+See the [Wiki](https://github.com/cfwheels/cfwheels-example-app/wiki/Installation)
 
 ## Requirements
 
  - Commandbox (to run locally)
- - Tested on Lucee 5.2.7
+ - Tested on Lucee 5.2.7 / ACF 2016
  - MySQL 5.x
