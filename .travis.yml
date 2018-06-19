@@ -25,7 +25,7 @@ before_script:
   # Create database
   - if [[ "$DB" == "MySQL" ]]; then mysql -e 'CREATE DATABASE exampleapp;'; fi 
   # Start The Server
-  - box server start cfengine=$CFENGINE
+  - box server start
   # Add the datasource via CFConfig
   - if [[ "$DB" == "MySQL" ]]; then box cfconfig datasource save name=exampleapp database=exampleapp dbdriver=$DB class="$DBCLASS" host=127.0.0.1 port=3306 username=travis password=""; fi
   # CFConfig seems to require a server restart to register the DB
@@ -34,8 +34,10 @@ before_script:
   - box cfconfig datasource list
   # Run DB Migrations
   - box wheels db latest
+  # Double check servername?
+  - box server list
 script: >
-  testResults="$(box wheels test type=app)";
+  testResults="$(box wheels test type=app servername=exampleapp)";
   echo "$testResults";
   if ! grep -i "\Tests Complete: All Good!" <<< $testResults;  then exit 1; fi
 notifications:
