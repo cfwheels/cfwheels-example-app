@@ -7,5 +7,5 @@
 	// set(errorEmailAddress="someone@somewhere.com");
 
 	// Automagically migrate the database if in production mode
-	set(autoMigrateDatabase=true);
+	//set(autoMigrateDatabase=true);
 </cfscript>

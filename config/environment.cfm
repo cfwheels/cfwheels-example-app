@@ -7,6 +7,6 @@
 
 	// Below, we have set it to "development" for you since that is convenient when you are building your application.
 	// We recommend that you change this to "production" when you're running your application live.
-	set(environment="production");
+	set(environment="development");
 
 </cfscript>
