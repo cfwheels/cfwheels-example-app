@@ -1,8 +1,8 @@
 {
     "name":"CFWheels Example App",
-    "version":"0.0.1",
+    "version":"0.0.2",
     "author":"Tom King",
-    "location":"cfwheels/cfwheels-example-app#v0.0.1",
+    "location":"cfwheels/cfwheels-example-app#v0.0.2",
     "directory":"",
     "createPackageDirectory":false,
     "packageDirectory":"",
