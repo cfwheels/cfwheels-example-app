@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.0.2 (TBA)
+## 0.0.2 - 20 Jun 2018
 
 Second Alpha Release
 Note: Should run on Lucee 5 + ACF2016
