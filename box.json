@@ -1,22 +1,22 @@
 {
     "name":"CFWheels Example App",
-    "version":"0.0.0",
+    "version":"0.0.1",
     "author":"Tom King",
-    "location":"neokoenig/cfwheels-example-app#v0.0.0",
+    "location":"cfwheels/cfwheels-example-app#v0.0.1",
     "directory":"",
     "createPackageDirectory":false,
     "packageDirectory":"",
-    "homepage":"https://github.com/neokoenig/cfwheels-example-app/",
-    "documentation":"https://github.com/neokoenig/cfwheels-example-app/",
+    "homepage":"https://github.com/cfwheels/cfwheels-example-app/",
+    "documentation":"https://github.com/cfwheels/cfwheels-example-app/wiki/",
     "repository":{
         "type":"git",
-        "URL":"https://github.com/neokoenig/cfwheels-example-app"
+        "URL":"https://github.com/cfwheels/cfwheels-example-app"
     },
-    "bugs":"https://github.com/neokoenig/cfwheels-example-app/issues",
-    "slug":"cfwheels",
-    "shortDescription":"CFWheels MVC Framework",
-    "changelog":"https://github.com/neokoenig/cfwheels-example-app/CHANGELOG.md",
-    "type":"mvc",
+    "bugs":"https://github.com/cfwheels/cfwheels-example-app/issues",
+    "slug":"cfwheels-example-app",
+    "shortDescription":"A CFWheels 2.x example app with user management, role based permissions and password resets",
+    "changelog":"https://github.com/cfwheels/cfwheels-example-app/CHANGELOG.md",
+    "type":"projects",
     "keywords":[
         "mvc",
         "rails",
@@ -27,7 +27,7 @@
     "license":[
         {
             "type":"Apache License 2.0",
-            "URL":"https://github.com/neokoenig/cfwheels-example-app/LICENSE"
+            "URL":"https://github.com/cfwheels/cfwheels-example-app/LICENSE"
         }
     ],
     "dependencies":{
@@ -39,5 +39,12 @@
         "cfwheels-flashmessages-bootstrap":"plugins/FlashMessagesBootstrap",
         "cfwheels-authenticateThis":"plugins/authenticateThis",
         "cfwheels-js-confirm":"plugins/jsconfirm"
+    },
+    "scripts":{
+        "postVersion":"package set location='cfwheels/cfwheels-example-app#v`package version`'",
+        "postPublish":"!git push --follow-tags",
+        "patch-release":"bump --patch && publish",
+        "minor-release":"bump --minor && publish",
+        "major-release":"bump --major && publish"
     }
 }
