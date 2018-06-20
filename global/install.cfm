@@ -14,7 +14,7 @@ public function createApplicationSettings(){
     // Load Application Settings
     local.settings=model("setting").findAll();
     for(var setting in local.settings){
-        application.settings[setting.name]=setting.value;
+        application.settings[setting.name]=deserializeJSON(setting.value);
     }
 
     // Anon Level Permissions: these are the application level defaults

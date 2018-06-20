@@ -24,11 +24,15 @@
 	// Turn on new flashAppend Behaviour
 	set(flashAppend = true);
 
+	// Optional: Create SQL files when migrating
+	// Useful for debugging
+	// set(writeMigratorSQLFiles=true);
+
 	// Turn on URL rewriting by default.
 	// Commandbox urlrewrite.xml is provided.
 	// See https://guides.cfwheels.org/docs/url-rewriting for Apache/IIS etc
 	set(URLRewriting="On");
-  
+
 	// Don't include potentially sensitive data in error handling emails
 	set(excludeFromErrorEmail="password,passwordHash,passwordResetToken");
 	set(sendEmailOnError=false); // TODO: change this
