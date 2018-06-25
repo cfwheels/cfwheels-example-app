@@ -13,6 +13,9 @@ component extends="Model" {
 		validatesUniquenessOf("email");
 		validatesFormatOf(property="email", allowBlank=true, type="email");
 
+		// More Password Checks
+		validate("additionalEmailValidation");
+
 		// When a user is created by registration (i.e, not being created by an authenticated user)
 		// Then require the prescence of a checked terms and conditions box
 		validatesPresenceOf(
@@ -42,6 +45,17 @@ component extends="Model" {
 			this.lastname = sanitizeInput(this.lastname);
 		if(structKeyExists(this, "email"))
 			this.email = sanitizeInput(this.email);
+	}
+
+	/**
+	 * Check Password doesn't exist within Email
+	 */
+	function additionalEmailValidation() {
+		if(structKeyExists(this, "password")
+			&& structKeyExists(this, "email")
+			&& this.email CONTAINS this.password
+		)
+			this.addError(property="password", message="Your password should not be part of your email address");
 	}
 
 	/**

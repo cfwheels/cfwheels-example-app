@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.3 - TBA
+
+### Breaking Changes
+
+(Hey, we're in Alpha, get over it.)
+
+- Application settings now stored as serialized JSON to help with migrator bug (see cfwheels/cfwheels#871)
+
+### Enhancements
+
+- Should now run on MSSQL (thanks @18thAvenue)
+- Now installable via commandbox (`install cfwheels-example-app`)
+- Passwords can now no longer be part of your email address
+
 ## 0.0.2 - 20 Jun 2018
 
 Second Alpha Release

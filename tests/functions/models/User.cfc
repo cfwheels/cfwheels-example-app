@@ -67,6 +67,23 @@ component extends="app.tests.Test" {
 		assert("v EQ false");
 		assert("arrayLen(err) EQ 1");
 	}
+
+	function test_password_cant_be_in_email(){
+		params= {
+			"firstname": "Joe",
+			"lastname": "Bloggs",
+			"email": "avalidString123!@bloggs.com",
+			"password": "avalidString123!",
+			"passwordConfirmation": "avalidString123!",
+			"terms": 1
+		};
+		m.setProperties(params);
+		v = m.valid();
+		err = m.allErrors();
+		assert("v EQ false");
+		assert("arrayLen(err) EQ 1");
+	}
+
 	function test_generateRandomPassword(){
 		r=m.generateRandomPassword();
 		assert("len(r) EQ 12");
