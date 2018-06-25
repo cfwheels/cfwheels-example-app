@@ -14,7 +14,7 @@ component extends="Model" {
 		validatesFormatOf(property="email", allowBlank=true, type="email");
 
 		// More Password Checks
-		validate("additionalEmailValidation");
+		validate("additionalPasswordValidation");
 
 		// When a user is created by registration (i.e, not being created by an authenticated user)
 		// Then require the prescence of a checked terms and conditions box
@@ -50,7 +50,7 @@ component extends="Model" {
 	/**
 	 * Check Password doesn't exist within Email
 	 */
-	function additionalEmailValidation() {
+	function additionalPasswordValidation() {
 		if(structKeyExists(this, "password")
 			&& structKeyExists(this, "email")
 			&& this.email CONTAINS this.password
