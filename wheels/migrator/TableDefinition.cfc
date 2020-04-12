@@ -25,8 +25,11 @@ component extends="Base" {
 	}
 
 	/**
-   * Adds a primary key definition to the table. this method also allows for multiple primary keys.
-   */
+	* Adds a primary key definition to the table. this method also allows for multiple primary keys.
+	*
+	* [section: Migrator]
+	* [category: Table Definition Functions]
+	*/
 	public any function primaryKey(
 		required string name,
 		string type="integer",
@@ -66,8 +69,11 @@ component extends="Base" {
 	}
 
 	/**
-   * Adds a column to table definition.
-   */
+	* Adds a column to table definition.
+	*
+	* [section: Migrator]
+	* [category: Table Definition Functions]
+	*/
 	public any function column(
 		required string columnName,
 		required string columnType,
@@ -86,253 +92,327 @@ component extends="Base" {
 	}
 
 	/**
-   * Adds integer columns to table definition.
-   */
+	* Adds integer columns to table definition.
+	*
+	* [section: Migrator]
+	* [category: Table Definition Functions]
+	*/
 	public any function bigInteger(
-		required string columnNames,
+		string columnNames,
 		numeric limit,
 		string default,
 		boolean null
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "biginteger";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames, local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-   * Adds binary columns to table definition.
-   */
-	public any function binary(required string columnNames, string default, boolean null) {
+	* Adds binary columns to table definition.
+	*
+	* [section: Migrator]
+	* [category: Table Definition Functions]
+	*/
+	public any function binary(
+		string columnNames, 
+		string default, 
+		boolean null
+	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "binary";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames, local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-   * Adds boolean columns to table definition.
-   */
-	public any function boolean(required string columnNames, string default, boolean null) {
+	* Adds boolean columns to table definition.
+	*
+	* [section: Migrator]
+	* [category: Table Definition Functions]
+	*/
+	public any function boolean(
+		string columnNames, 
+		string default, 
+		boolean null
+	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "boolean";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames, local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-   * Adds date columns to table definition.
-   */
-	public any function date(required string columnNames, string default, boolean null) {
+	* Adds date columns to table definition.
+	*
+	* [section: Migrator]
+	* [category: Table Definition Functions]
+	*/
+	public any function date(
+		string columnNames, 
+		string default, 
+		boolean null
+	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "date";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames, local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds datetime columns to table definition
-    */
+ 	* adds datetime columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function datetime(
-		required string columnNames,
+		string columnNames,
 		string default,
 		boolean null
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "datetime";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds decimal columns to table definition
-    */
+ 	* adds decimal columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function decimal(
-		required string columnNames,
+		string columnNames,
 		string default,
 		boolean null,
 		numeric precision,
 		numeric scale
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "decimal";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds float columns to table definition
-    */
+ 	* adds float columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function float(
-		required string columnNames,
+		string columnNames,
 		string default="",
 		boolean null="true"
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "float";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds integer columns to table definition
-    */
+ 	* adds integer columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function integer(
-		required string columnNames,
+		string columnNames,
 		numeric limit,
 		string default,
 		boolean null
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "integer";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds string columns to table definition
-    */
+ 	* adds string columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function string(
-		required string columnNames,
+		string columnNames,
 		any limit,
 		string default,
 		boolean null
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "string";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds char columns to table definition
-    */
+ 	* adds char columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function char(
 		required string columnNames,
 		any limit,
 		string default,
 		boolean null
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "char";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds text columns to table definition
-    */
+ 	* adds text columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function text(
-		required string columnNames,
+		string columnNames,
 		string default,
 		boolean null
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "text";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds UUID columns to table definition
-    */
+ 	* adds UUID columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function uniqueidentifier(
-		required string columnNames,
+		string columnNames,
 		string default="newid()",
 		boolean null
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "uniqueidentifier";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds time columns to table definition
-    */
+ 	* adds time columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function time(
-		required string columnNames,
+		string columnNames,
 		string default,
 		boolean null
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		arguments.columnType = "time";
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds timestamp columns to table definition
-    */
+ 	* adds timestamp columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function timestamp(
-		required string columnNames,
+		string columnNames,
 		string default,
 		boolean null,
 		string columnType="datetime"
 	) {
+		$combineArguments(args=arguments, combine="columnNames,columnName", required=true);
 		local.iEnd = ListLen(arguments.columnNames);
 		for (local.i = 1; local.i <= local.iEnd; local.i++) {
-			arguments.columnName = ListGetAt(arguments.columnNames,local.i);
+			arguments.columnName = Trim(ListGetAt(arguments.columnNames, local.i));
 			column(argumentCollection=arguments);
 		}
 		return this;
 	}
 
 	/**
-    * adds CFWheels convention automatic timestamp and soft delete columns to table definition
-    */
+ 	* adds CFWheels convention automatic timestamp and soft delete columns to table definition
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function timestamps() {
 		local.columnNames = ArrayToList([
-			application.wheels.timeStampOnCreateProperty,
-			application.wheels.timeStampOnUpdateProperty,
-			application.wheels.softDeleteProperty
+			$get("timeStampOnCreateProperty"),
+			$get("timeStampOnUpdateProperty"),
+			$get("softDeleteProperty")
 		]);
 		timestamp(columnNames=local.columnNames,null=true);
 		return this;
 	}
 
 	/**
-    * adds integer reference columns to table definition and creates foreign key constraints
-    */
+ 	* adds integer reference columns to table definition and creates foreign key constraints
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public any function references(
 		required string referenceNames,
 		string default,
@@ -371,8 +451,11 @@ component extends="Base" {
 	}
 
 	/**
-    * creates the table in the database
-    */
+ 	* creates the table in the database
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public void function create() {
 		if(this.force) {
 			$execute(this.adapter.dropTable(this.name));
@@ -387,8 +470,11 @@ component extends="Base" {
 	}
 
 	/**
-    * alters existing table in the database
-    */
+ 	* alters existing table in the database
+ 	*
+ 	* [section: Migrator]
+ 	* [category: Table Definition Functions]
+ 	*/
 	public void function change(boolean addColumns="false") {
 		local.existingColumns = $getColumns(this.name);
 		local.iEnd = ArrayLen(this.columns);

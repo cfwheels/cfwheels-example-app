@@ -58,7 +58,7 @@ public void function onApplicationStart() {
 	request.cgi = $cgiScope();
 
 	// Set up containers for routes, caches, settings etc.
-	application.$wheels.version = "2.0.1";
+	application.$wheels.version = "2.1.0";
 	try {
 		application.$wheels.hostName = CreateObject("java", "java.net.InetAddress").getLocalHost().getHostName();
 	} catch (any e) {}
@@ -70,6 +70,7 @@ public void function onApplicationStart() {
 	application.$wheels.nonExistingHelperFiles = "";
 	application.$wheels.nonExistingLayoutFiles = "";
 	application.$wheels.nonExistingObjectFiles = "";
+	application.$wheels.directoryFiles = {};
 	application.$wheels.routes = [];
 	application.$wheels.resourceControllerNaming = "plural";
 	application.$wheels.namedRoutePositions = {};
@@ -129,8 +130,15 @@ public void function onApplicationStart() {
 	application.$wheels.dataSourcePassword = "";
 	application.$wheels.transactionMode = "commit";
 
+	// Enable or disable major components
+	application.$wheels.enablePluginsComponent = true;
+	application.$wheels.enableMigratorComponent = true;
+	application.$wheels.enablePublicComponent = false;
+	if (application.$wheels.environment == "development") {
+		application.$wheels.enablePublicComponent = true;
+	}
+
 	// Create migrations object and set default settings.
-	application.$wheels.migrator = $createObjectFromRoot(path="wheels", fileName="Migrator", method="init");
 	application.$wheels.autoMigrateDatabase = false;
 	application.$wheels.migratorTableName = "migratorversions";
 	application.$wheels.createMigratorTable = true;
@@ -146,17 +154,16 @@ public void function onApplicationStart() {
 	application.$wheels.cacheDatabaseSchema = true;
 	application.$wheels.cacheModelConfig = true;
 	application.$wheels.cachePlugins = true;
+	application.$wheels.cacheFileChecking = true;
 
 	// Cache settings that are turned off in development mode only.
 	application.$wheels.cacheActions = false;
-	application.$wheels.cacheFileChecking = false;
 	application.$wheels.cacheImages = false;
 	application.$wheels.cachePages = false;
 	application.$wheels.cachePartials = false;
 	application.$wheels.cacheQueries = false;
 	if (application.$wheels.environment != "development") {
 		application.$wheels.cacheActions = true;
-		application.$wheels.cacheFileChecking = true;
 		application.$wheels.cacheImages = true;
 		application.$wheels.cachePages = true;
 		application.$wheels.cachePartials = true;
@@ -188,6 +195,11 @@ public void function onApplicationStart() {
 
 	// CORS (Cross-Origin Resource Sharing) settings.
 	application.$wheels.allowCorsRequests = false;
+	application.$wheels.accessControlAllowOrigin="*";
+	application.$wheels.accessControlAllowMethods="GET, POST, PATCH, PUT, DELETE, OPTIONS";
+	application.$wheels.accessControlAllowMethodsByRoute=false;
+	application.$wheels.accessControlAllowCredentials = false;
+	application.$wheels.accessControlAllowHeaders="Origin, Content-Type, X-Auth-Token, X-Requested-By, X-Requested-With";
 
 	// Debugging and error settings.
 	application.$wheels.showDebugInformation = true;
@@ -261,6 +273,8 @@ public void function onApplicationStart() {
 	if (ListFindNoCase("production,maintenance", application.$wheels.environment)) {
 		application.$wheels.redirectAfterReload = true;
 	}
+	application.$wheels.validateTestPackageMetaData = true;
+	application.$wheels.resetPropertiesStructKeyCase = true;
 
 	// If session management is enabled in the application we default to storing Flash data in the session scope, if not we use a cookie.
 	if (StructKeyExists(this, "sessionManagement") && this.sessionManagement) {
@@ -396,12 +410,10 @@ public void function onApplicationStart() {
 
 	// Load general developer settings first, then override with environment specific ones.
 	$include(template="config/settings.cfm");
-	$include(template="config/#application.$wheels.environment#/settings.cfm");
-
-	// Auto Migrate Database if requested
-	if (application.$wheels.autoMigrateDatabase){
-		application.$wheels.migrator.migrateToLatest();
+	if (FileExists(ExpandPath("/app/config/#application.$wheels.environment#/settings.cfm"))) {
+		$include(template="config/#application.$wheels.environment#/settings.cfm");
 	}
+
 	// Clear query (cfquery) and page (cfcache) caches.
 	if (application.$wheels.clearQueryCacheOnReload or !StructKeyExists(application.$wheels, "cacheKey")) {
 		application.$wheels.cacheKey = Hash(CreateUUID());
@@ -422,8 +434,15 @@ public void function onApplicationStart() {
 		}
 	}
 
+	// Enable the main GUI Component
+	if (application.$wheels.enablePublicComponent){
+		application.$wheels.public = $createObjectFromRoot(path="wheels", fileName="Public", method="$init");
+	}
+
 	// Reload the plugins each time we reload the application.
-	$loadPlugins();
+	if (application.$wheels.enablePluginsComponent){
+		$loadPlugins();
+	}
 
 	// Allow developers to inject plugins into the application variables scope.
 	if (!StructIsEmpty(application.$wheels.mixins)) {
@@ -443,6 +462,14 @@ public void function onApplicationStart() {
 	// Assign it all to the application scope in one atomic call.
 	application.wheels = application.$wheels;
 	StructDelete(application, "$wheels");
+
+	// Auto Migrate Database if requested
+	if(application.wheels.enableMigratorComponent){
+		application.wheels.migrator = $createObjectFromRoot(path="wheels", fileName="Migrator", method="init");
+		if (application.wheels.autoMigrateDatabase){
+			application.wheels.migrator.migrateToLatest();
+		}
+	}
 
 	// Run the developer's on application start code.
 	$include(template="#application.wheels.eventPath#/onapplicationstart.cfm");
