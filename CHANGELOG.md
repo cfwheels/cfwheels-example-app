@@ -1,6 +1,12 @@
 # Changelog
 
-## 0.0.3 - TBA
+## 0.0.4 - 21 Nov 2020
+
+ - Upgrades to wheels 2.2
+
+## 0.0.3 - 12 Apr 2020
+
+ - Upgrades to wheels 2.1
 
 ### Breaking Changes
 
