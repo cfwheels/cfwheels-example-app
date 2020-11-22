@@ -2,74 +2,55 @@ component extends="Base" output=false {
 
 	/**
 	 * Map database types to the ones used in CFML.
-	 * Using oid cols should probably be avoided, included here for completeness.
-	 * PostgreSQL has deprecated the money type, included here for completeness.
 	 */
 	public string function $getType(required string type, string scale, string details) {
 		switch (arguments.type) {
-			case "bigint":
-			case "int8":
-			case "bigserial":
-			case "serial8":
-				local.rv = "cf_sql_bigint";
-				break;
-			case "bool":
-			case "boolean":
-			case "bit":
-			case "varbit":
-				local.rv = "cf_sql_bit";
-				break;
-			case "bytea":
+			case "blob":
+			case "bfile":
 				local.rv = "cf_sql_binary";
 				break;
 			case "char":
-			case "character":
+			case "nchar":
 				local.rv = "cf_sql_char";
 				break;
 			case "date":
-			case "datetime":
 			case "timestamp":
-			case "timestamptz":
 				local.rv = "cf_sql_timestamp";
 				break;
 			case "decimal":
-			case "double":
-			case "precision":
-			case "float":
-			case "float4":
-			case "float8":
+			case "dec":
 				local.rv = "cf_sql_decimal";
 				break;
 			case "integer":
 			case "int":
-			case "int4":
-			case "serial":
-			case "oid":
 				local.rv = "cf_sql_integer";
 				break;
 			case "numeric":
-			case "smallmoney":
-			case "money":
+			case "number":
 				local.rv = "cf_sql_numeric";
 				break;
 			case "real":
+			case "binary_float":
+			case "binary_double":
+			case "double":
+			case "precision":
+			case "float":
 				local.rv = "cf_sql_real";
 				break;
 			case "smallint":
-			case "int2":
 				local.rv = "cf_sql_smallint";
 				break;
-			case "text":
+			case "long":
+			case "clob":
+			case "nclob":
 				local.rv = "cf_sql_longvarchar";
 				break;
 			case "time":
-			case "timetz":
 				local.rv = "cf_sql_time";
 				break;
 			case "varchar":
-			case "varying":
-			case "bpchar":
-			case "uuid":
+			case "varchar2":
+			case "rowid":
 				local.rv = "cf_sql_varchar";
 				break;
 		}
@@ -86,9 +67,13 @@ component extends="Base" output=false {
 		required boolean parameterize,
 		string $primaryKey = ""
 	) {
-		$convertMaxRowsToLimit(args = arguments);
 		$removeColumnAliasesInOrderClause(args = arguments);
 		$addColumnsToSelectAndGroupBy(args = arguments);
+
+		// Oracle DB doesn't support limit and offset in SQL.
+		StructDelete(arguments, "limit");
+		StructDelete(arguments, "offset");
+
 		$moveAggregateToHaving(args = arguments);
 		return $performQuery(argumentCollection = arguments);
 	}
@@ -113,21 +98,16 @@ component extends="Base" output=false {
 		if (Left(local.sql, 11) == "INSERT INTO" && !StructKeyExists(arguments.result, $generatedKey())) {
 			local.startPar = Find("(", local.sql) + 1;
 			local.endPar = Find(")", local.sql);
-			local.columnList = "";
-			if (local.endPar) {
-				local.columnList = ReplaceList(
-					Mid(local.sql, local.startPar, (local.endPar - local.startPar)),
-					"#Chr(10)#,#Chr(13)#, ",
-					",,"
-				);
-			}
-
-			// Lucee/ACF doesn't support PostgreSQL natively when it comes to returning the primary key value of the last inserted record so we have to do it manually by using the sequence.
+			local.columnList = ReplaceList(
+				Mid(local.sql, local.startPar, (local.endPar - local.startPar)),
+				"#Chr(10)#,#Chr(13)#, ",
+				",,"
+			);
 			if (!ListFindNoCase(local.columnList, ListFirst(arguments.primaryKey))) {
 				local.rv = {};
 				local.tbl = SpanExcluding(Right(local.sql, Len(local.sql) - 12), " ");
 				query = $query(
-					sql = "SELECT currval(pg_get_serial_sequence('#local.tbl#', '#arguments.primaryKey#')) AS lastId",
+					sql = "SELECT #arguments.primaryKey# AS lastId FROM #local.tbl# WHERE ROWID = (SELECT MAX(ROWID) FROM #local.tbl#)",
 					argumentCollection = arguments.queryAttributes
 				);
 				local.rv[$generatedKey()] = query.lastId;
@@ -140,7 +120,22 @@ component extends="Base" output=false {
 	 * Override Base adapter's function.
 	 */
 	public string function $randomOrder() {
-		return "random()";
+		return "RANDOM()";
+	}
+
+	/**
+	 * Override Base adapter's function.
+	 */
+	public string function $defaultValues() {
+		return "() VALUES()";
+	}
+
+	/**
+	 * Set a default for the table alias string (e.g. "users AS users2").
+	 * Individual database adapters will override when necessary.
+	 */
+	public string function $tableAlias(required string table, required string alias) {
+		return arguments.table & " " & arguments.alias;
 	}
 
 	include "../../plugins/standalone/injection.cfm";

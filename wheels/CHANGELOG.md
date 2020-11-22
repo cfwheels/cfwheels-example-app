@@ -1,6 +1,50 @@
+<a name="2.2"></a>
+
+# [2.2](https://github.com/cfwheels/cfwheels/releases/tag/v2.2.0) (11/22/2020)
+
+### Controller Enhancements
+
+- Added the `status` argument to all `render*()` functions to force returning a specific HTTP status code [#1025](https://github.com/cfwheels/cfwheels/issues/1025) - [Adam Chapman, Tom King]
+- CORS `accessControlAllowOrigin` can now match subdomain wildcards [#1031](https://github.com/cfwheels/cfwheels/issues/1031) - [Tom King]
+
+### Model Enhancements
+
+- Experimental adapter for Oracle database - [Andrei B]
+- Added `automaticValidations` argument to the `property` method - [Per Djurner]
+- Support named second argument in `findOneBy[Property]And[Property]` and `findAllBy[Property]And[Property]` - [Per Djurner]
+- Support `value` argument in `findOrCreateBy[Property]` - [Per Djurner]
+- Minor fix for `full null support` - [Michael Diederich]
+
+### View Enhancements
+
+- Added the `required` argument to `imageTag` to suppress exceptions if using non-existent files [#979](https://github.com/cfwheels/cfwheels/issues/979) - [Adam Chapman, Michael Diederich]
+
+### Bug Fixes
+
+- Removed authenticity token id attribute to avoid non-unique id warnings in Chrome [#953](https://github.com/cfwheels/cfwheels/issues/953) - [Per Djurner]
+- Fixes regular expression bug when using the SQL `IN` operator [#944](https://github.com/cfwheels/cfwheels/issues/944) - [Adam Chapman, Per Djurner]
+- Display content in maintenance mode on newer Lucee versions [#848](https://github.com/cfwheels/cfwheels/issues/848) - [Per Djurner]
+- `validatesUniquenessOf` does not respect allowBlank [#914](https://github.com/cfwheels/cfwheels/issues/914) - [Adam Chapman]
+- `Wheels.RouteNotFound` Error page now escapes the `arguments.path` to prevent XSS attacks - [Michael Diederich]
+- `buttonTo()` now uses `<button>` internally instead of `<input>` allowing for html in content - [#798](https://github.com/cfwheels/cfwheels/issues/798) - [Tom Sucaet, Tom King, Per Djurner]
+- Minor SQL preview fix in GUI - [#992](https://github.com/cfwheels/cfwheels/issues/992) - [Brandon Shea, Tom King]
+
+### Miscellaneous
+
+- Added the `refresh` url parameter for auto refreshing test framework html - [#986](https://github.com/cfwheels/cfwheels/issues/986) - [Adam Chapman]
+- Allow custom migrator templates by scanning the `/migrator/templates` directory - [Adam Chapman]
+- Minimum Lucee 5 version is now 5.3.2.77 - Tests added - [Michael Diederich]
+- Use `http_x_forwarded_proto` to determine if the application is running behind a loadbalancer that is performing SSL offloading - [Peter Amiri]
+- Allow the combination of `url` and `params` arguments with `redirectTo` - [Adam Chapman]
+- Fixed some variable scoping - [Michael Diederich]
+- Github Actions CI Pipeline - [Adam Chapman, Tom King]
+- Flash Cookie can now be disabled via `set(flashStorage="none")` [#978](https://github.com/cfwheels/cfwheels/issues/978) [Tom King]
+- `processRequest()` accepts a route param -[#1030](https://github.com/cfwheels/cfwheels/issues/1030) - [Adam Chapman]
+- Migration files are written with 664 mode -[#1034](https://github.com/cfwheels/cfwheels/issues/1034) - [Adam Chapman]
+
 <a name="2.1"></a>
 
-# 2.1
+# [2.1](https://github.com/cfwheels/cfwheels/releases/tag/v2.1.0) (04/12/2020)
 
 ### Bug Fixes
 
@@ -11,7 +55,7 @@
 
 # [2.1.0-Beta](https://github.com/cfwheels/cfwheels/releases/tag/v2.1.0-beta) (02/24/2020)
 
-### Potentially breaking changes
+### Potentially Breaking Changes
 
 - The new CFWheels internal GUI is more isolated and runs in it's own component: previously this was extending the developers main `Controller.cfc` which caused multiple issues. The migrator, test runner and routing GUIs have therefore all been re-written.
 - The plugins system behaviour no longer chains multiple functions of the same name as this was a major performance hit. It's recommended that plugin authors check their plugins to run on 2.1
