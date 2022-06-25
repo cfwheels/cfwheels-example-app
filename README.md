@@ -15,6 +15,6 @@ See the [Wiki](https://github.com/cfwheels/cfwheels-example-app/wiki/Installatio
 
 ## Requirements
 
- - Commandbox (to run locally)
+ - CommandBox (to run locally)
  - Tested on Lucee 5.2.7 / ACF 2016
  - MySQL 5.x
