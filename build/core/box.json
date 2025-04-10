@@ -1,0 +1,41 @@
+{
+    "name":"Wheels Core",
+    "version":"@build.version@",
+    "author":"Wheels Core Team and Community",
+    "shortDescription":"Wheels Framework Core Directory",
+    "location":"ForgeboxStorage",
+    "slug":"wheels-core",
+    "directory":"vendor/wheels",
+    "createPackageDirectory":true,
+    "packageDirectory":"vendor/wheels",
+		"homepage":"https://cfwheels.org/",
+    "documentation":"https://docs.cfwheels.org/",
+    "changelog":"https://github.com/cfwheels/cfwheels/blob/master/CHANGELOG.md",
+    "bugs":"https://github.com/cfwheels/cfwheels/issues",
+		"contributors":[
+			"Peter Amiri <peter@alurium.com>"
+		],
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/cfwheels/cfwheels"
+    },
+    "keywords":[
+        "mvc",
+        "rails",
+        "wheels",
+        "wheels",
+        "core"
+    ],
+    "ignore":[
+        "box.json",
+        "readme.md"
+    ],
+    "type":"mvc",
+    "private":false,
+    "license":[
+        {
+            "type":"Apache License 2.0",
+            "URL":"https://github.com/cfwheels/cfwheels/blob/master/LICENSE"
+        }
+    ]
+}
