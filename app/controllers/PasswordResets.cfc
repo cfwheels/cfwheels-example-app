@@ -75,7 +75,7 @@ component extends="Controller"
 	* Which could help a potential attacker
 	**/
 	private function genericError() {
-		return redirectTo(route="passwordreset", error="Sorry, we couldn't complete your request");
+		return redirectTo(route="passwordreset-new", error="Sorry, we couldn't complete your request");
 	}
 
 	/**
@@ -103,7 +103,7 @@ component extends="Controller"
 	* This error gets thrown if the token is too old, not found, or simply malformed.
 	**/
 	private function badToken() {
-		return redirectTo(route="passwordreset", error="You have followed an outdated or incorrect reset code");
+		return redirectTo(route="passwordreset-edit", error="You have followed an outdated or incorrect reset code");
 	}
 
 }

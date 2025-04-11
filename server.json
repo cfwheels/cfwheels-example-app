@@ -1,5 +1,5 @@
 {
-    "name":"exampleapp",
+    "name":"wheels-example-app",
     "web":{
         "host":"localhost",
         "webroot":"public",

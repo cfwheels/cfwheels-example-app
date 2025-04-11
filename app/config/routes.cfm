@@ -28,8 +28,8 @@
 		//= 	Password Resets via Email
 		//=====================================================================
 		.scope(controller="passwordresets", path="password")
-			.get(name="Passwordreset", pattern="forgot", action="new")
-			.post(name="Passwordreset", pattern="forgot", action="create")
+			.get(name="Passwordreset-new", pattern="passwordresets/new", action="new")
+			.post(name="Passwordreset-create", pattern="passwordresets/create", action="create")
 			.get(name="editPasswordreset", pattern="recover/[token]", action="edit")
 			.put(name="updatePasswordreset", pattern="reset/[token]", action="update")
 		.end()

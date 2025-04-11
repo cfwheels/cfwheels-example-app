@@ -39,7 +39,7 @@
 			<p class="float-left">#linkTo(route="register-new", text="Register")#</p>
 		</cfif>
 		<cfif auth.allowPasswordReset && getSetting("authentication_allowPasswordResets")>
-			<p class="float-right">#linkTo(route="Passwordreset", text="I forgot my password")#</p>
+			<p class="float-right">#linkTo(route="Passwordreset-new", text="I forgot my password")#</p>
 		</cfif>
 
 		#endFormTag()#
