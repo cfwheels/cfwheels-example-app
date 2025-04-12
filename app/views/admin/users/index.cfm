@@ -57,13 +57,13 @@
 					<td class="text-right">
 						<div class="btn-group">
 							<cfif len(deletedAt)>
-								#buttonTo(route="recoverUser", method="patch", key=id, text="Recover",
+								#buttonTo(route="user-recover", method="patch", key=id, text="Recover",
 			confirm="Are you sure you wish to recover this account?", inputClass="btn btn-sm btn-warning")#
-								#buttonTo(route="destroyUser", method="delete", key=id, text="Delete",
+								#buttonTo(route="user-destroy", method="delete", key=id, text="Delete",
 			confirm="Are you sure you wish permanently delete this account?", inputClass="btn btn-sm btn-danger")#
 							<cfelse>
 								#linkTo(route="User", key=id, text="<i class='fa fa-eye'></i> View", class="btn btn-sm btn-info", encode=false)#
-								#linkTo(route="editUser", key=id, text="<i class='fa fa-edit'></i> Edit", class="btn btn-sm btn-primary", encode=false)#
+								#linkTo(route="user-edit", key = id, text="<i class='fa fa-edit'></i> Edit", class="btn btn-sm btn-primary", encode=false)#
 							</cfif>
 						</div>
 					</td>

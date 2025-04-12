@@ -56,7 +56,7 @@
 					<td><i class='fa fa-question text-warning'></i></td>
 				</cfif>
 			</cfloop>
-			<td>#linkTo(route="editPermission", encode="attributes", key=id, text="<i class='fa fa-edit'></i> " & "Edit", class="btn btn-sm  btn-primary float-right")#</td>
+			<td>#linkTo(route="permissions-edit", encode="attributes", key=id, text="<i class='fa fa-edit'></i> " & "Edit", class="btn btn-sm  btn-primary float-right")#</td>
 
 		</tr>
 	</cfloop>

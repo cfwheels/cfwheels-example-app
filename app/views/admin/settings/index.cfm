@@ -39,7 +39,7 @@
 			<td>#titleize(listLast(name, "_"))#</td>
 			<td><cfif len(docs)>#linkTo(href=docs, text=description, target="_blank")#<cfelse>#description#</cfif></td>
 			<td><cfif editable><cfif type EQ 'boolean'>#tickorcross(deserializeJSON(value))#<cfelse><code>#deserializeJSON(value)#</code></cfif><cfelse><code>[hidden]</code></cfif></td>
-			<td><cfif editable>#linkTo(route="editSetting", encode="attributes", key=id, text="<i class='fa fa-edit'></i> " & "Edit", class="btn btn-sm btn-primary")#</cfif></td>
+			<td><cfif editable>#linkTo(route="settings-edit", encode="attributes", key=id, text="<i class='fa fa-edit'></i> " & "Edit", class="btn btn-sm btn-primary")#</cfif></td>
 		</tr>
 	</cfif>
 

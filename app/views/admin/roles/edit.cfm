@@ -5,7 +5,7 @@
 
 
 #errorMessagesFor("role")#
-#startFormTag(id="roleEditForm", route="role", method="patch", key=params.key)#
+#startFormTag(id="roleEditForm", route="roles-update", method="patch", key=params.key)#
 	#includePartial("form")#
 	#submitTag(value="Update Role", class="mt-4 btn btn-success")#
 #endFormTag()#

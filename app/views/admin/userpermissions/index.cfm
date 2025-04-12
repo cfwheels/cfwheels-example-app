@@ -51,7 +51,7 @@
 			</td>
 			<td>
 				<cfif !userHasPermission>
-					#startFormTag(route="userPermissions", userKey=params.userkey)#
+					#startFormTag(route="permissions-create", userKey=params.userkey)#
 						#hiddenFieldTag(name= "permissionid", value = id)#
 						#submitTag(value="Grant", class="btn btn-sm btn-warning")#
 					#endFormTag()#

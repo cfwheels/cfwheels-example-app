@@ -42,7 +42,7 @@
 	set(URLRewriting="On");
 
 	// Don't include potentially sensitive data in error handling emails
-	set(excludeFromErrorEmail="password,passwordHash,passwordResetToken");
+	set(excludeFromErrorEmail="form.password,form.passwordHash,form.passwordResetToken");
 	set(sendEmailOnError=false); // TODO: change this
 
 	//=====================================================================

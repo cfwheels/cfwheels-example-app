@@ -22,7 +22,7 @@
 						<td>#logFileBadge(type=type, severity=severity)#</td>
 						<td><small>
 							<cfif hasPermission("canViewLogData") && isJson(data)>
-								<a href="##" title="View Data" data-toggle="modal" data-target="##logModalCenter" data-remoteurl=#urlFor(route='log', format='json', key=id)#>#e(Message)#</a>
+								<a href="##" title="View Data" data-toggle="modal" data-target="##logModalCenter" data-remoteurl=#urlFor(route='logs', format='json', key=id)#>#e(Message)#</a>
 							<cfelse>
 								#e(Message)#
 							</cfif>

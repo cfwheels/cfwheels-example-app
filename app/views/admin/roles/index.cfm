@@ -26,7 +26,7 @@
 					</td>
                     <!--- CLI-Appends-tbody-Here --->
 					<td class="text-right">
-						#linkTo(route="editrole", key=id, text="<i class='fa fa-edit'></i> Edit", class="btn btn-sm btn-primary", encode=false)#
+						#linkTo(route="roles-edit", key=id, text="<i class='fa fa-edit'></i> Edit", class="btn btn-sm btn-primary", encode=false)#
 					</td>
 				</tr>
 				</cfloop>
