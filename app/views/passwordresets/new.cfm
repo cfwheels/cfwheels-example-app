@@ -7,7 +7,9 @@
     #panel(title="Reset Password")#
     #startFormTag(route="Passwordreset-create")#
     #textFieldTag(name="email", label="Email")#
-    #submitTag(value="Send Password Reset Email", class="btn btn-block btn-primary")#
+    <div class="d-grid">
+      #submitTag(value="Send Password Reset Email", class="btn btn-block btn-primary")#
+    </div>
     #endFormTag()#
     <p class="mt-2">#linkTo(route="root", text="Cancel")#</p>
   </div>

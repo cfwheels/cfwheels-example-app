@@ -20,7 +20,7 @@ component {
 		local.result = replace(local.result, '</p>', '</div>', 'all');
 
 		// build the string to append for the button and close event
-		var local.append = ' role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+		var local.append = ' role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>';
 
 		// handle the four standard Bootstrap alert types
 		local.result = replace(local.result, 'class="success-message">', 'class="alert alert-success alert-dismissible"' & local.append, 'all');

@@ -6,32 +6,33 @@
 	 <strong>Note:</strong> any changes here require a restart of the application to take effect
 	</div>
 	<cfif roles.recordcount>
-
-		<table class="table table-sm">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th colspan=2>Description</th>
-                    <!--- CLI-Appends-thead-Here --->
-				</tr>
-			</thead>
-			<tbody>
-				<cfloop query="roles">
-				<tr>
-					<td>
-						#e(name)#
-					</td>
-					<td>
-						<span class="text-muted">#e(description)#</span>
-					</td>
-                    <!--- CLI-Appends-tbody-Here --->
-					<td class="text-right">
-						#linkTo(route="roles-edit", key=id, text="<i class='fa fa-edit'></i> Edit", class="btn btn-sm btn-primary", encode=false)#
-					</td>
-				</tr>
-				</cfloop>
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th colspan=2>Description</th>
+						<!--- CLI-Appends-thead-Here --->
+					</tr>
+				</thead>
+				<tbody>
+					<cfloop query="roles">
+					<tr>
+						<td>
+							#e(name)#
+						</td>
+						<td>
+							<span class="text-muted">#e(description)#</span>
+						</td>
+						<!--- CLI-Appends-tbody-Here --->
+						<td class="float-end">
+							#linkTo(route="roles-edit", key=id, text="<i class='fa fa-edit'></i> Edit", class="btn btn-sm btn-primary text-nowrap", encode=false)#
+						</td>
+					</tr>
+					</cfloop>
+				</tbody>
+			</table>
+		</div>
 	<cfelse>
 		<div class="alert alert-info">
 			<strong>Sorry</strong><br /> there are no Roles to display

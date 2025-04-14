@@ -30,16 +30,18 @@
 	  	 	#checkbox(objectname="auth", property="rememberme", label="Remember Me")#
 	  	</cfif>
 
-		#submitTag(value="Login", class="btn btn-block btn-primary")#
+		<div class="d-grid">
+		#submitTag(value="Login", class="btn btn-primary mt-2")#
+		</div>
 
 		<cfif getSetting("authentication_allowRegistration") OR getSetting("authentication_allowPasswordResets")>
 			<hr />
 		</cfif>
 		<cfif auth.allowUserRegistration && getSetting("authentication_allowRegistration")>
-			<p class="float-left">#linkTo(route="register-new", text="Register")#</p>
+			<p class="float-start">#linkTo(route="register-new", text="Register")#</p>
 		</cfif>
 		<cfif auth.allowPasswordReset && getSetting("authentication_allowPasswordResets")>
-			<p class="float-right">#linkTo(route="Passwordreset-new", text="I forgot my password")#</p>
+			<p class="float-end">#linkTo(route="Passwordreset-new", text="I forgot my password")#</p>
 		</cfif>
 
 		#endFormTag()#

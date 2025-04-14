@@ -2,7 +2,7 @@
 	New User Registration Form
 --->
 <cfoutput>
-#pageHeader(title="Create Account", btn=linkTo(route="login", text="<i class='fa fa-chevron-left'></i> Cancel", class="btn btn-info btn-xs", encode="attributes"))#
+#pageHeader(title="Create Account", btn=linkTo(route="login", text="<i class='fa fa-chevron-left'></i> Cancel", class="btn btn-info btn-xs text-white", encode="attributes"))#
 
 
 #errorMessagesFor("user")#
@@ -14,10 +14,10 @@
 
 			#panel(title="Your Details", class="mb-4")#
 				<div class="row">
-					<div class="col">
+					<div class="col-12 col-sm">
 						#textField(objectName="user", property="firstname", label="First Name")#
 					</div>
-					<div class="col">
+					<div class="col-12 col-sm">
 						#textField(objectName="user", property="lastname", label="Last Name")#
 					</div>
 				</div>

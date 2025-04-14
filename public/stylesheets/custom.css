@@ -51,3 +51,7 @@ dd {
   cursor: pointer;
   padding: 5px 10px;
 }
+
+.form-group{
+  margin-bottom: 1rem;
+}

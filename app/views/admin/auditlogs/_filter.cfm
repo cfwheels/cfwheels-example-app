@@ -4,26 +4,26 @@
 <cfoutput>
 #startFormTag(route="logs", method="get", class="form-inline mb-2")#
 	<div class="row">
-	    <div class="col-2">
+	    <div class="col-12 col-sm-4 col-md-2">
 	 		#selectTag(name="severity", options=severitytypes, includeBlank="All Levels", selected=params.severity, label="Severity", prependToLabel="<div class=""form-group mb-2"">", labelClass="sr-only")#
 		</div>
-	    <div class="col-2">
+	    <div class="col-12 col-sm-4 col-md-2">
 	 		#selectTag(name="type", options=logtypes, includeBlank="All Types", selected=params.type, label="Type", prependToLabel="<div class=""form-group mb-2"">", labelClass="sr-only")#
 		</div>
 
-		<div class="col-3">
+		<div class="col-12 col-sm-4 col-md-3">
 			#textFieldTag(name="q", value=params.q, label="Keyword Search", labelClass="sr-only", placeholder="Keyword")#
 		</div>
 
-		<div id="reportrange" class="col-4">
+		<div id="reportrange" class="col-12 col-sm-8 col-md-4">
 		    <i class="fa fa-calendar"></i>&nbsp;
 		    <span></span> <i class="fa fa-caret-down"></i>
 		</div>
 		#hiddenFieldTag(name="from", value=params.from)#
 		#hiddenFieldTag(name="to", value=params.to)#
 
-	    <div class="col-1">
-			#submitTag(value="Filter", class="btn btn-info")#
+	    <div class="col-12 col-sm-4 col-md-1">
+			#submitTag(value="Filter", class="btn btn-info text-white")#
 		</div>
 	</div>
 #endFormTag()#

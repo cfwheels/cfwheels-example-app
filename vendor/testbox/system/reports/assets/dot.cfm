@@ -22,8 +22,8 @@
 							<img src="data:image/png;base64, #toBase64( fileReadBinary( '#ASSETS_DIR#/images/TestBoxLogo125.png' ) )#" height="75">
 							<span class="badge badge-info">v#testbox.getVersion()#</span>
 						</div>
-						<div class="buttonBar mt-1 float-right mb-1">
-							<a 	class="ml-1 btn btn-sm btn-primary float-right"
+						<div class="buttonBar mt-1 float-end mb-1">
+							<a 	class="ml-1 btn btn-sm btn-primary float-end"
 								href="#variables.baseURL#&directory=#URLEncodedFormat( URL.directory )#&opt_run=true"
 								title="Run all tests"
 							>
@@ -115,7 +115,7 @@
 												<span class="h5">
 													<strong>Global Bundle Exception</strong>
 												</span>
-												<button class="btn btn-link float-right py-0 expand-collapse collapsed" id="btn_globalException_#thisBundle.id#" onclick="toggleDebug( 'globalException_#thisBundle.id#' )" title="Show more information">
+												<button class="btn btn-link float-end py-0 expand-collapse collapsed" id="btn_globalException_#thisBundle.id#" onclick="toggleDebug( 'globalException_#thisBundle.id#' )" title="Show more information">
 													<i class="fas fa-plus-square"></i>
 												</button>
 												<div class="my-2 pl-4 debugdata" style="display:none;" data-specid="globalException_#thisBundle.id#">
@@ -129,7 +129,7 @@
 												<span class="alert-link h5">
 													<strong>Debug Stream: #thisBundle.path#</strong>
 												</span>
-												<button class="btn btn-link float-right py-0 expand-collapse collapsed" id="btn_#thisBundle.id#" onclick="toggleDebug( '#thisBundle.id#' )" title="Toggle the test debug stream">
+												<button class="btn btn-link float-end py-0 expand-collapse collapsed" id="btn_#thisBundle.id#" onclick="toggleDebug( '#thisBundle.id#' )" title="Toggle the test debug stream">
 													<i class="fas fa-plus-square"></i>
 												</button>
 												<div class="my-2 pl-4 debugdata" style="display:none;" data-specid="#thisBundle.id#">

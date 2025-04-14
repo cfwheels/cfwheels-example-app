@@ -31,9 +31,9 @@
 						</div>
 
 						<div>
-							<input class="d-inline col-7 ml-2 form-control float-right mb-1" type="text" name="bundleFilter" id="bundleFilter" placeholder="Filter Bundles..." size="35">
-							<div class="buttonBar mb-1 float-right">
-								<a 	class="ml-1 btn btn-sm btn-primary float-right"
+							<input class="d-inline col-7 ml-2 form-control float-end mb-1" type="text" name="bundleFilter" id="bundleFilter" placeholder="Filter Bundles..." size="35">
+							<div class="buttonBar mb-1 float-end">
+								<a 	class="ml-1 btn btn-sm btn-primary float-end"
 									href="#variables.baseURL#&directory=#URLEncodedFormat( URL.directory )#&opt_run=true"
 									title="Run all tests"
 								>
@@ -41,14 +41,14 @@
 								</a>
 								<button
 									id="collapse-bundles"
-									class="ml-1 btn btn-sm btn-primary float-right"
+									class="ml-1 btn btn-sm btn-primary float-end"
 									title="Collapse all bundles"
 									>
 										<i class="fas fa-minus-square"></i> Collapse All Bundles
 								</button>
 								<button
 									id="expand-bundles"
-									class="ml-1 btn btn-sm btn-primary float-right"
+									class="ml-1 btn btn-sm btn-primary float-end"
 									title="Expand all bundles"
 									>
 										<i class="fas fa-plus-square"></i> Expand All Bundles
@@ -157,14 +157,14 @@
 												#thisBundle.path# (#numberFormat( thisBundle.totalDuration )# ms)
 											</a>
 											<button
-													class="btn btn-link float-right py-0 bundle-btn"
+													class="btn btn-link float-end py-0 bundle-btn"
 													style="text-decoration: none;"
 													type="button"
 												>
 												<i class="fas fa-minus-square plus-minus"></i>
 											</button>
 										</h5>
-										<div class="float-right">
+										<div class="float-end">
 											<span
 												class="spec-status btn btn-sm btn-success Passed"
 												data-status="passed" data-bundleid="#thisBundle.id#"
@@ -230,7 +230,7 @@
 																</strong>(#numberFormat( thisBundle.totalDuration )# ms)
 															</span>
 															<button
-																class="btn btn-link float-right py-0"
+																class="btn btn-link float-end py-0"
 																style="text-decoration: none;"
 																id="btn_globalException_#thisBundle.id#"
 																title="Show more information"
@@ -271,7 +271,7 @@
 															</span>
 
 															<button
-																class="btn btn-link float-right py-0"
+																class="btn btn-link float-end py-0"
 																style="text-decoration: none;"
 																id="btn_#thisBundle.id#"
 																title="Toggle the test debug stream"
@@ -521,7 +521,7 @@ code {
 								<cfif structKeyExists( local.thisSpec, "message" )>
 									- <strong>#encodeForHTML( local.thisSpec.message )#</strong></a>
 									<button
-										class="btn btn-link float-right py-0 expand-collapse"
+										class="btn btn-link float-end py-0 expand-collapse"
 										data-toggle="collapse"
 										data-target="##failure_error_#local.thisSpec.id#"
 										aria-expanded="false"

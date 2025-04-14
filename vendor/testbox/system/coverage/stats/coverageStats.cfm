@@ -81,7 +81,7 @@
 									<cfset trimmedFilePath = replaceNoCase( qTarget.filePath, pathToCapture, '' )>
 									<li class="list-group-item">
 										<span class="col-9">#trimmedFilePath#</span>
-										<div class=" col-3 d-inline-flex float-right">
+										<div class=" col-3 d-inline-flex float-end">
 											<div class="progress position-relative w-100">
 												<div class="progress-bar bg-#codeBrowser.percentToContextualClass( percentage )#" role="progressbar" style="width: #percentage#%" aria-valuenow="#percentage#" aria-valuemin="0" aria-valuemax="100"></div>
 												<div class="progress-bar bg-secondary" role="progressbar" style="width: #100-percentage#%" aria-valuenow="#100-percentage#" aria-valuemin="0" aria-valuemax="100"></div>
@@ -103,7 +103,7 @@
 									<cfset trimmedFilePath 	= replaceNoCase( qTarget.filePath, pathToCapture, '' )>
 									<li class="list-group-item">
 										<span class="col-9">#trimmedFilePath#</span>
-										<div class=" col-3 d-inline-flex float-right">
+										<div class=" col-3 d-inline-flex float-end">
 											<div class="progress position-relative w-100">
 												<div class="progress-bar bg-#codeBrowser.percentToContextualClass( percentage )#" role="progressbar" style="width: #percentage#%" aria-valuenow="#percentage#" aria-valuemin="0" aria-valuemax="100"></div>
 												<div class="progress-bar bg-secondary" role="progressbar" style="width: #100-percentage#%" aria-valuenow="#100-percentage#" aria-valuemin="0" aria-valuemax="100"></div>

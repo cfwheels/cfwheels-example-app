@@ -105,7 +105,7 @@
         writeOutput('<div class="card ' & arguments.class & '" style="' & arguments.style & '">');
         writeOutput('<div class="card-header">' & e(arguments.title) );
         if(len(arguments.btn)){
-            writeOutput('<span class="float-right">' & arguments.btn & '</span>');
+            writeOutput('<span class="float-end">' & arguments.btn & '</span>');
         }
         writeOutput('</div><div class="card-body">');
         }
@@ -133,9 +133,9 @@
     * @btn BTN contents
     */
     string function pageHeader(string title="", string btn=""){
-    writeOutput('<h1 class="font-weight-light">' & e(arguments.title));
+    writeOutput('<h1 class="fw-light">' & e(arguments.title));
     if(len(arguments.btn)){
-        writeOutput('<span class="float-right">' & arguments.btn & '</span>');
+        writeOutput('<span class="float-end">' & arguments.btn & '</span>');
     }
     writeOutput('</h1><hr />');
     }
@@ -163,7 +163,7 @@
         local.badgeClass = "light";
             break;
     }
-    return "<span class='badge badge-#local.badgeClass#'>" & e(arguments.type) & "</span>";
+    return "<span class='badge rounded-pill text-bg-#local.badgeClass#'>" & e(arguments.type) & "</span>";
     }
     /**
     * Renders a Gravatar from gravatar.com

@@ -1,12 +1,12 @@
 <!--- User Show --->
 <cfparam name="user">
 <cfoutput>
-#pageHeader(title=e(user.firstname) & ' ' & e(user.lastname),  btn=linkTo(route="users", text="<i class='fa fa-chevron-left'></i> Return", class="btn btn-info btn-xs", encode="attributes"))#
+#pageHeader(title=e(user.firstname) & ' ' & e(user.lastname),  btn=linkTo(route="users", text="<i class='fa fa-chevron-left'></i> Return", class="btn btn-info btn-xs text-white", encode="attributes"))#
 
 
-#panel(title="User Details", class="mb-4")#
-
-<table class="table table-sm">
+#panel(title="User Details", class="my-5 my-sm-4")#
+<div class="table-responsive">
+	<table class="table table-sm">
 	<tbody>
 		<tr>
 			<th>Gravatar</th>
@@ -54,7 +54,7 @@
 		</tr>
  	</tbody>
  </table>
-
+</div>
  <!--- This is an example of a named permission in action --->
  <cfif len(user.adminNotes) && hasPermission("canViewAdminNotes")>
  	<h6 class="mt-5">Administrative Notes</h6>
@@ -69,7 +69,7 @@
 			text="Update this user's main details, including their administative notes",
 			class="bg-light mb-3",
 			style="max-width: 18rem;",
-			footer=linkTo(route="user-edit", key=user.id, text="Edit Details", class="btn btn-info btn-xs"),
+			footer=linkTo(route="user-edit", key=user.id, text="Edit Details", class="btn btn-info btn-xs text-white"),
 			close=true)#
 	</cfif>
 	<cfif hasPermission("admin.userpermissions.show")>
@@ -77,7 +77,7 @@
 			text="View this user's permissions and add account specific overrides.",
 			class="bg-light mb-3",
 			style="max-width: 18rem;",
-			footer=linkTo(route='permission', userkey=user.id, text='Edit Permissions', class="btn btn-info"),
+			footer=linkTo(route='permission', userkey=user.id, text='Edit Permissions', class="btn btn-info text-white"),
 			close=true)#
 	</cfif>
 

@@ -3,13 +3,13 @@
 --->
 <cfoutput>
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-2 px-md-4">
   #linkTo(route="root", class="navbar-brand", text=getSetting('general_sitename'))#
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="##navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="##navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
       <!---
@@ -56,7 +56,7 @@
 
       <cfif isAuthenticated()>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false">#e(getSession().user.properties.email)#</a>
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false">#e(getSession().user.properties.email)#</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <cfif hasPermission("accounts.show")>
           #linkTo(route="account-show", class="dropdown-item", text="Account")#

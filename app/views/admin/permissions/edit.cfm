@@ -1,5 +1,5 @@
 <cfoutput>
-#pageHeader(title="Edit Permission", btn=linkTo(route="permissions", text="<i class='fa fa-chevron-left'></i> Cancel and return", class="btn btn-info btn-xs", encode="attributes"))#
+#pageHeader(title="Edit Permission", btn=linkTo(route="permissions", text="<i class='fa fa-chevron-left'></i> Cancel and return", class="btn btn-info btn-xs text-white", encode="attributes"))#
 
 	#startFormTag(route="permissions-update", key=permission.key(), method="put")#
 		#includePartial("form")#
