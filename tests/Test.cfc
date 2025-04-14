@@ -6,12 +6,19 @@ component extends="wheels.Test" {
 
 	/**
 	 * Executes once before the test suite runs.
+	 *
+	 * [section: Test Model Configuration]
+	 * [category: Callback Functions]
+	 *
 	 */
 	function beforeAll() {
 	}
 
 	/**
 	 * Executes before every test case (unless overridden in a package without calling super.setup()).
+	 *
+	 * [section: Test Model Configuration]
+	 * [category: Callback Functions]
 	 */
 	function setup() {
 		// NOTE: These tests require URL rewriting to work as they occasionally test for strings like /login (as opposed to /index.cfm/login/)
@@ -31,6 +38,9 @@ component extends="wheels.Test" {
 
 	/**
 	 * Executes after every test case (unless overridden in a package without calling super.teardown()).
+	 *
+	 * [section: Test Model Configuration]
+	 * [category: Callback Functions]
 	 */
 	function teardown() {
 		request.isTestingMode=false;
@@ -40,6 +50,9 @@ component extends="wheels.Test" {
 
 	/**
 	 * Executes once after the test suite runs.
+	 *
+	 * [section: Test Model Configuration]
+	 * [category: Callback Functions]
 	 */
 	function afterAll() {
 	}

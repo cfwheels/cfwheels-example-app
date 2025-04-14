@@ -1,50 +1,68 @@
 {
-    "name":"CFWheels Example App",
-    "version":"0.0.5",
-    "author":"Tom King",
-    "location":"cfwheels/cfwheels-example-app#v0.0.5",
-    "directory":"",
-    "createPackageDirectory":false,
-    "packageDirectory":"",
-    "homepage":"https://github.com/cfwheels/cfwheels-example-app/",
-    "documentation":"https://github.com/cfwheels/cfwheels-example-app/wiki/",
+    "name":"Wheels.dev",
+    "version":"3.0.0-SNAPSHOT",
+    "author":"CFWheels Core Team and Community",
+    "shortDescription":"CFWheels MVC Framework Core Directory",
+    "location":"ForgeboxStorage",
+    "slug":"wheels.fw",
+    "directory":"vendor/wheels",
+    "createPackageDirectory":true,
+    "packageDirectory":"vendor/wheels",
+    "homepage":"https://cfwheels.org/",
+    "documentation":"https://docs.cfwheels.org/",
+    "changelog":"https://github.com/cfwheels/cfwheels/blob/master/CHANGELOG.md",
+    "bugs":"https://github.com/cfwheels/cfwheels/issues",
     "repository":{
         "type":"git",
-        "URL":"https://github.com/cfwheels/cfwheels-example-app"
+        "URL":"https://github.com/cfwheels/cfwheels"
     },
-    "bugs":"https://github.com/cfwheels/cfwheels-example-app/issues",
-    "slug":"cfwheels-example-app",
-    "shortDescription":"A CFWheels 2.x example app with user management, role based permissions and password resets",
-    "changelog":"https://github.com/cfwheels/cfwheels-example-app/CHANGELOG.md",
-    "type":"projects",
     "keywords":[
         "mvc",
         "rails",
         "wheels",
-        "cfwheels"
+        "cfwheels",
+        "core"
     ],
+    "ignore":[
+        "box.json",
+        "readme.md"
+    ],
+    "installPathConvention":{
+        "modules":"vendor/",
+        "cfwheels-plugins":"vendor/"
+    },
+    "installPaths":{
+        "cfwheels":"vendor/wheels/",
+        "wirebox":"vendor/wirebox/",
+        "testbox":"vendor/testbox/",
+        "cfwheels-authenticateThis":"app/plugins/authenticateThis/",
+        "cfwheels-flashmessages-bootstrap":"app/plugins/FlashMessagesBootstrap/",
+        "cfwheels-js-confirm":"plugins/jsconfirm/"
+    },
+    "devDependencies":{
+        "commandbox-dotenv":"*",
+        "commandbox-cfconfig":"*",
+        "commandbox-cfformat":"*"
+    },
+    "dependencies":{
+        "wirebox":"^7",
+        "testbox":"^5",
+        "cfwheels-authenticateThis":"^1.0.1",
+        "cfwheels-flashmessages-bootstrap":"^1.0.4",
+        "cfwheels-js-confirm":"^1.0.5"
+    },
+    "type":"mvc",
     "private":false,
     "license":[
         {
             "type":"Apache License 2.0",
-            "URL":"https://github.com/cfwheels/cfwheels-example-app/LICENSE"
+            "URL":"https://github.com/cfwheels/cfwheels/blob/master/LICENSE"
         }
     ],
-    "dependencies":{
-        "cfwheels-flashmessages-bootstrap":"^1.0.2",
-        "cfwheels-authenticateThis":"^1.0.1",
-        "cfwheels-js-confirm":"^1.0.5"
-    },
-    "installPaths":{
-        "cfwheels-flashmessages-bootstrap":"plugins/FlashMessagesBootstrap",
-        "cfwheels-authenticateThis":"plugins/authenticateThis",
-        "cfwheels-js-confirm":"plugins/jsconfirm"
-    },
     "scripts":{
-        "postVersion":"package set location='cfwheels/cfwheels-example-app#v`package version`'",
-        "postPublish":"!git push --follow-tags",
-        "patch-release":"bump --patch && publish",
-        "minor-release":"bump --minor && publish",
-        "major-release":"bump --major && publish"
+        "onServerInstall":"cfpm install image,mail,zip,debugger,caching,mysql,postgresql,sqlserver",
+        "format":"cfformat run --overwrite",
+        "format:watch":"cfformat watch ./.cfformat.json",
+        "format:check":"cfformat check"
     }
 }

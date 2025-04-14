@@ -1,16 +1,14 @@
 {
-    "name":"exampleapp",
+    "name":"wheels-example-app",
     "web":{
-        "http":{
-            "host":"localhost",
-            "port":60050
-        },
+        "host":"localhost",
+        "webroot":"public",
         "rewrites":{
             "enable":true,
-            "config":"urlrewrite.xml"
+            "config":"public/urlrewrite.xml"
         }
     },
     "app":{
-        "cfengine":"lucee@5"
+        "cfengine":"lucee"
     }
 }
