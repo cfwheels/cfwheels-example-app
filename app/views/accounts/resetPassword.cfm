@@ -7,7 +7,7 @@
 <cfif hasPasswordResetBlock()>
 	#pageHeader(title="Password Update Required")#
 <cfelse>
-	#pageHeader(title="Update Password", btn=linkTo(route="account-edit", text="<i class='fa fa-chevron-left'></i> Cancel", class="btn btn-info btn-xs text-white", encode="attributes"))#
+	#pageHeader(title="Update Password", btn=linkTo(route="account-show", text="<i class='fa fa-chevron-left'></i> Cancel", class="btn btn-info btn-xs text-white", encode="attributes"))#
 </cfif>
 
 #panel(title="Update Your Password", class="mb-4")#

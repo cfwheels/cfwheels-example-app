@@ -8,7 +8,7 @@
 	 <strong>Note:</strong> any changes here require will require a user to relogin to take effect
 	</div>
 	<div class="table-responsive">
-		<table id="permissionstable" class="table  table-striped table-sm table-hover">
+		<table id="permissionstable" class="table table-striped table-sm table-hover">
 			<thead>
 			<tr>
 				<th>Name</th>
@@ -57,8 +57,7 @@
 							<td><i class='fa fa-question text-warning'></i></td>
 						</cfif>
 					</cfloop>
-					<td>#linkTo(route="permissions-edit", encode="attributes", key=id, text="<i class='fa fa-edit'></i> " & "Edit", class="btn btn-sm  btn-primary float-end text-nowrap")#</td>
-
+					<td>#linkTo(route="permissions-edit", encode="attributes", key=id, text="<i class='fa fa-edit'></i> " & "Edit", class="btn btn-sm btn-primary float-end text-nowrap")#</td>
 				</tr>
 			</cfloop>
 			</cfloop>

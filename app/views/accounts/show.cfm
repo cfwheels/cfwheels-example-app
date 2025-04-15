@@ -7,13 +7,13 @@
 
 #panel(title="Your Account Details", class="mb-4",
 	btn="<div class='btn-group gap-2'>"
-	& linkTo(route="account-getPassword", text="Change Password", class="btn btn-warning btn-sm")
+	& linkTo(route="account-getPassword", text="Change Password", class="btn btn-warning btn-sm text-white")
 	& linkTo(route="account-edit", text="Edit Details", class="btn btn-info btn-sm text-white")
 	& "</div>")#
 
 <div class="row">
 	<div class="col-sm-4">
-		<div class="mb-3 mt-3">#gravatar(email=user.email, size=160)#</div>
+		<div class="my-4">#gravatar(email=user.email, size=160)#</div>
 	</div>
 	<div class="col-sm-8">
 		  

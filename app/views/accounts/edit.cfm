@@ -3,7 +3,7 @@
 --->
 <cfparam name="user">
 <cfoutput>
-#pageHeader(title="Edit Account", btn=linkTo(route="account-edit", text="<i class='fa fa-chevron-left'></i> Cancel", class="btn btn-info btn-xs text-white", encode="attributes"))#
+#pageHeader(title="Edit Account", btn=linkTo(route="account-show", text="<i class='fa fa-chevron-left'></i> Cancel", class="btn btn-info btn-xs text-white", encode="attributes"))#
 
 #panel(title="Your Account Details", class="mb-4")#
 

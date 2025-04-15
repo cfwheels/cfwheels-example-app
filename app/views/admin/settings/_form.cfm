@@ -1,10 +1,10 @@
 <cfoutput>
 #panel(title="Update Value for #e(setting.name)#", class="mb-4")#
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-8 col-md-4">
 			#e(setting.description)#
 		</div>
-		<div class="col-md-4">
+		<div class="col-4 col-md-4">
 			<cfswitch expression="#setting.type#">
 			<cfcase value="boolean">
 				#checkbox(objectname="setting", property="value", label="")#

@@ -22,7 +22,7 @@
 
 <cfloop from="1" to="#arraylen(settingCategories)#" index="i">
 
-<h4 class="mb-4 mt-4 fw-light">#titleize(settingCategories[i])#</h4>
+<h4 class="my-4 fw-light">#titleize(settingCategories[i])#</h4>
 <div class="table-responsive">
 	<table id="settingstable#i#" class="table table-bordered table-striped table-sm">
 		<thead>

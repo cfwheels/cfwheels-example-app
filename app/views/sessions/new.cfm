@@ -16,7 +16,7 @@
 
 		<cfif auth.allowRememberMe && usingRememberMeCookie>
 			
-			<div class="mb-3 mt-3">#gravatar(savedEmail)#</div>
+			<div class="my-3">#gravatar(savedEmail)#</div>
 
 			<p>Welcome back <strong>#savedEmail#</strong>. (#linkTo(text="Not You?", route="forgetme")#)</p>
 			#hiddenField(objectname="auth", property="email", value=savedEmail)#
@@ -31,7 +31,7 @@
 	  	</cfif>
 
 		<div class="d-grid">
-		#submitTag(value="Login", class="btn btn-primary mt-2")#
+			#submitTag(value="Login", class="btn btn-primary mt-2")#
 		</div>
 
 		<cfif getSetting("authentication_allowRegistration") OR getSetting("authentication_allowPasswordResets")>
