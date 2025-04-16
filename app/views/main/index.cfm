@@ -2,7 +2,7 @@
 
 #pageHeader(title="Welcome")#
 
-<p class="lead">This is an example App using CFWheels 2.x and some Bootstrap</p>
+<p class="lead">This is an example App using CFWheels 3.x and some Bootstrap</p>
 <cfif !isAuthenticated()>
 	<p>Why don't you #linkTo(route="login", text="Login?")#</p>
 <cfelse>

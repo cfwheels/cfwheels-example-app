@@ -8,26 +8,25 @@
 			<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 			<cfoutput>#csrfMetaTags()#</cfoutput>
 			<title>#e(getSetting('general_sitename'))#</title>
-			<meta name="description" content="This is an example CFWheels Application">
+			<meta name="keywords" content="cfwheels,cfml,ruby,framework">
+			<meta name="description" content="This is an example wheels Application">
 			<!---
 				CSS
-				Include Bootstrap 4 and Font Awesome via CDN
+				Include Bootstrap 5 and Font Awesome
 				Yes, I could technically put these all in a stylesheetLinkTag, but I think this is slightly more readable
 				Also include custom.css from /stylesheets/
 			--->
-			<!--- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" /> --->
-			<!--- <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" /> --->
-			<!--- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --->
 			#stylesheetLinkTag("custom")#
 			#stylesheetLinkTag("bootstrap.min")#
 			#stylesheetLinkTag("fontawesome.min")#
 			#stylesheetLinkTag("daterangepicker")#
+
 			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 			<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 			<![endif]-->
-			<link rel="shortcut icon" href="/favicon.ico">
+			<link rel="shortcut icon" href="/images/favicon.ico">
 		</head>
 		<body>
 			<!--[if lt IE 8]>
@@ -63,13 +62,9 @@
 			Yes, I could technically put these all in a javascriptIncludeTag, but I think this is slightly more readable
 			Also include custom.js from /javascripts/
 			--->
-			<!--- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --->
 			#javascriptIncludeTag("jquery.min")#
-			<!--- <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> --->
 			#javascriptIncludeTag("bootstrap.min")#
-			<!--- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> --->
 			#javascriptIncludeTag("moment.min")#
-			<!--- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --->
 			#javascriptIncludeTag("daterangepicker")#
 			#javascriptIncludeTag("custom")#
 			
