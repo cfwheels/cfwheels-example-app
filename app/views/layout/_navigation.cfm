@@ -59,7 +59,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false">#e(getSession().user.properties.email)#</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <cfif hasPermission("accounts.show")>
-          #linkTo(route="account-show", class="dropdown-item", text="Account")#
+          #linkTo(route="account", class="dropdown-item", text="Account")#
           <div class="dropdown-divider"></div>
         </cfif>
         #linkTo(route="logout", class="dropdown-item", text="Logout")#

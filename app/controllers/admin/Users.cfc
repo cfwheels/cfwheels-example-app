@@ -2,7 +2,7 @@ component extends="app.controllers.Controller" {
 
 	function config() {
 		super.config(restrictAccess=true);
-		verifies(except="index,new,create,show,update", params="key", paramsTypes="integer", handler="objectNotFound");
+		verifies(except="index,new,create", params="key", paramsTypes="integer", handler="objectNotFound");
 		filters(through="filterGetAllRoles", except="show");
 	}
 

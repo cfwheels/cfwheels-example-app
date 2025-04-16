@@ -58,13 +58,13 @@
 						<td class="float-end">
 							<div class="btn-group gap-2 text-nowrap">
 								<cfif len(deletedAt)>
-									#buttonTo(route="user-recover", method="patch", key=id, text="Recover",
+									#buttonTo(route="recoverUser", method="patch", key=id, text="Recover",
 				confirm="Are you sure you wish to recover this account?", inputClass="btn btn-sm btn-warning")#
-									#buttonTo(route="user-destroy", method="delete", key=id, text="Delete",
+									#buttonTo(route="destroyUser", method="delete", key=id, text="Delete",
 				confirm="Are you sure you wish permanently delete this account?", inputClass="btn btn-sm btn-danger")#
 								<cfelse>
 									#linkTo(route="User", key=id, text="<i class='fa fa-eye'></i> View", class="btn btn-sm btn-info text-white", encode=false)#
-									#linkTo(route="user-edit", key = id, text="<i class='fa fa-edit'></i> Edit", class="btn btn-sm btn-primary", encode=false)#
+									#linkTo(route="editUser", key = id, text="<i class='fa fa-edit'></i> Edit", class="btn btn-sm btn-primary", encode=false)#
 								</cfif>
 							</div>
 						</td>

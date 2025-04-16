@@ -7,7 +7,7 @@
 
 #errorMessagesFor("user")#
 
-#startFormTag(id="registrationForm", route="register-create")#
+#startFormTag(id="registrationForm", route="register")#
 
 	<div class="row">
 		<div class="col-md-6 offset-md-3">

@@ -13,7 +13,7 @@ component extends="app.models.Model"
 		property(name="allowUserRegistration", defaultValue=true);
 		validatesPresenceOf(properties="email,password");
 		validatesFormatOf(property="email", allowBlank=true, type="email");
-		authenticateThis(required=false);
+		// authenticateThis(required=false);
 	}
 
 	// Authenticates

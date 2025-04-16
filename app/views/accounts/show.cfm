@@ -7,8 +7,8 @@
 
 #panel(title="Your Account Details", class="mb-4",
 	btn="<div class='btn-group gap-2'>"
-	& linkTo(route="account-getPassword", text="Change Password", class="btn btn-warning btn-sm text-white")
-	& linkTo(route="account-edit", text="Edit Details", class="btn btn-info btn-sm text-white")
+	& linkTo(route="accountPassword", text="Change Password", class="btn btn-warning btn-sm text-white")
+	& linkTo(route="editAccount", text="Edit Details", class="btn btn-info btn-sm text-white")
 	& "</div>")#
 
 <div class="row">

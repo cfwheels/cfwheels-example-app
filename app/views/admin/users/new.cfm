@@ -3,7 +3,7 @@
 <cfoutput>
 #pageHeader(title="Create New User",  btn=linkTo(route="users", text="<i class='fa fa-chevron-left'></i> Cancel", class="btn btn-info btn-xs text-white", encode="attributes"))#
 #errorMessagesFor("user")#
-#startFormTag(id="userNewForm", route="user-create")#
+#startFormTag(id="userNewForm", route="Users")#
 	#includePartial("form/details")#
 	#includePartial("form/role")#
 	#includePartial("form/auth")#

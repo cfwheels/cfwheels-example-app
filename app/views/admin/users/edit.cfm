@@ -5,7 +5,7 @@
 
 
 #errorMessagesFor("user")#
-#startFormTag(id="userEditForm", route="user-update", method="patch", key=params.key)#
+#startFormTag(id="userEditForm", route="User", method="patch", key=params.key)#
 	#includePartial("form/details")#
 	#includePartial("form/role")#
 	#submitTag(value="Update User", class="mt-4 btn btn-success")#

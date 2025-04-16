@@ -19,7 +19,6 @@ component extends="app.controllers.Controller" {
 	* Creates the session
 	**/
 	function create(){
-		// writeDump(params);abort;
 		auth=model("auth." & getSetting('authentication_gateway')).new(params.auth);
 		if(!auth.hasErrors() && auth.login()){
 			addLogLine(type="auth", severity="info", message="User #getSession().user.properties.email# successfully logged in");

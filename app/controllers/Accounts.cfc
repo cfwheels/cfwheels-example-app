@@ -76,7 +76,7 @@ component extends="app.controllers.Controller" {
 	* Redirect away if object can't be found
 	**/
 	private function objectNotFound() {
-		redirectTo(action="show", error="Sorry, your account can't be retrieved");
+		redirectTo(action="index", error="Sorry, your account can't be retrieved");
 	}
 
 }

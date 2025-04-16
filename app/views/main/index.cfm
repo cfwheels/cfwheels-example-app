@@ -6,6 +6,6 @@
 <cfif !isAuthenticated()>
 	<p>Why don't you #linkTo(route="login", text="Login?")#</p>
 <cfelse>
-	<p>Cool beans bro. <cfif hasPermission("accounts.show")> Check out your #linkTo(route="account-show", text="User Account")#.</cfif></p>
+	<p>Cool beans bro. <cfif hasPermission("accounts.show")> Check out your #linkTo(route="account", text="Account")#.</cfif></p>
 </cfif>
 </cfoutput>

@@ -69,7 +69,7 @@
 			text="Update this user's main details, including their administative notes",
 			class="bg-light mb-3",
 			style="max-width: 18rem;",
-			footer=linkTo(route="user-edit", key=user.id, text="Edit Details", class="btn btn-info btn-xs text-white"),
+			footer=linkTo(route="editUser", key=user.id, text="Edit Details", class="btn btn-info btn-xs text-white"),
 			close=true)#
 	</cfif>
 	<cfif hasPermission("admin.userpermissions.show")>
@@ -77,7 +77,7 @@
 			text="View this user's permissions and add account specific overrides.",
 			class="bg-light mb-3",
 			style="max-width: 18rem;",
-			footer=linkTo(route='permission', userkey=user.id, text='Edit Permissions', class="btn btn-info text-white"),
+			footer=linkTo(route='userPermissions', userkey=user.id, text='Edit Permissions', class="btn btn-info text-white"),
 			close=true)#
 	</cfif>
 
@@ -86,7 +86,7 @@
 			text="Send a new password to this user via Email; they will be forced to change it when they login",
 			class="bg-light mb-3",
 			style="max-width: 18rem;",
-			footer=buttonTo(route="user-reset", method="put", key=user.id, text="Reset Password", confirm="Are you sure you wish to reset this user's password?", inputClass="btn btn-warning btn-xs"),
+			footer=buttonTo(route="resetUser", method="put", key=user.id, text="Reset Password", confirm="Are you sure you wish to reset this user's password?", inputClass="btn btn-warning btn-xs"),
 			close=true)#
 	</cfif>
 </div>
@@ -96,7 +96,7 @@
 			text="Assume this user account so you can test this user's permissions and access. Note, you will need to logout/in again to resume your old session",
 			class="bg-light mb-3",
 			style="max-width: 18rem;",
-			footer=buttonTo(route="user-assume", method="post", key=user.id, text="Assume", inputClass="btn btn-warning btn-xs"),
+			footer=buttonTo(route="assumeUser", method="post", key=user.id, text="Assume", inputClass="btn btn-warning btn-xs"),
 			close=true)#
 	</cfif>
 	<cfif hasPermission("admin.users.delete")>
@@ -104,7 +104,7 @@
 			text="Disable this user via the Soft Delete system. The account is recoverable.",
 			class="bg-light mb-3",
 			style="max-width: 18rem;",
-			footer=buttonTo(route="user-delete", method="delete", key=user.id, text="Disable", confirm="Are you sure you wish to disable this account?", inputClass="btn btn-danger btn-xs"),
+			footer=buttonTo(route="User", method="delete", key=user.id, text="Disable", confirm="Are you sure you wish to disable this account?", inputClass="btn btn-danger btn-xs"),
 			close=true)#
 	</cfif>
 </div>
