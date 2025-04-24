@@ -10,8 +10,8 @@ component extends="app.controllers.Controller" {
 	* View all user permissions for a user
 	**/
 	function index() {
-		user=model("user").findByKey(key=params.userkey, include="role");
-		allpermissions=model("permission").findAll();
+		user=model("user").getUserRoleById(params.key);
+		allpermissions=model("permission").getPermissions();
 		rolePermissions=getRolePermissions(user.roleid);
 		userPermissions=getUserPermissions(user.id);
 		permissions=mergePermissions(

@@ -9,7 +9,7 @@ component extends="app.controllers.Controller" {
 	* View all roles
 	**/
 	function index() {
-		roles=model("role").findAll();
+		roles=model("role").getRoles();
 	}
 	/**
 	* Add New Role
@@ -33,14 +33,14 @@ component extends="app.controllers.Controller" {
 	* Edit role
 	**/
 	function edit() {
-		role=model("role").findByKey(params.key);
+		role=model("role").getRoleById(params.key);
 	}
 
 	/**
 	* Update role
 	**/
 	function update() {
-		role=model("role").findByKey(params.key);
+		role=model("role").getRoleById(params.key);
 		if(role.update(params.role)){
 			redirectTo(action="index", success="Role successfully updated");
 		} else {

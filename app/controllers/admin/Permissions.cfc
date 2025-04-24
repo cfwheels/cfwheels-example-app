@@ -10,22 +10,22 @@ component extends="app.controllers.Controller" {
 	* View all permissions
 	**/
 	function index() {
-		allroles=model("role").findAll(order="name");
-		allpermissions=model("permission").findAll();
+		allroles=model("role").getRolesOrderBy();
+		allpermissions=model("permission").getPermissions();
 	}
 
 	/**
 	* Edit permission
 	**/
 	function edit() {
-		permission=model("permission").findByKey(key=params.key, include="rolepermissions");
+		permission=model("permission").getRolePermissionByKey(params.key);
 	}
 
 	/**
 	* Update permission
 	**/
 	function update() {
-		permission=model("permission").findByKey(params.key);
+		permission=model("permission").getPermissionByKey(params.key);
 		if(permission.update(params.permission)){
 			redirectTo(action="index", success="Permission successfully updated: you must reload the application for these to take effect.");
 		} else {

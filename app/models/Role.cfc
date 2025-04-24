@@ -9,4 +9,16 @@ component extends="Model" {
 		validatesUniquenessOf(properties="name", message="Role name must be unique");
 	}
 
+	function getRoles(){
+		return findAll();
+	}
+	
+	function getRolesOrderBy(){
+		return findAll(order="name");
+	}
+	
+	function getRoleById(required string key){
+		return findByKey(key=arguments.key);
+	}
+
 }

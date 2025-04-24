@@ -35,5 +35,16 @@ component extends="Model"
 		}
 	}
 
+	function getPermissions(){
+		return findAll();
+	}
+	
+	function getPermissionByKey(required string key){
+		return findByKey(arguments.key);
+	}
+
+	function getRolePermissionByKey(required string key) {
+		return findByKey(key=arguments.key, include="rolepermissions");
+	}
 
 }

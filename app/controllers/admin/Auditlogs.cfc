@@ -48,19 +48,14 @@ component extends="app.controllers.Controller" {
 				arrayAppend(local.where, whereify(local.qWhere, "OR"));
 			}
 		}
-		auditlogs=model("auditlog").findAll(
-			where=whereify(local.where),
-			order="createdAt DESC",
-			perpage=params.perpage,
-			page=params.page
-		);
+		auditlogs=model("auditlog").getAuditLog(local.where, params.perpage, params.page);
 	}
 
 	/**
 	* Show Log Detail via AJAX JSON
 	**/
 	function show() {
-		log = model("auditlog").findByKey(params.key);
+		log = model("auditlog").getAuditLogByKey(params.key);
 		renderWith(data=deserializeJSON(log.data));
 	}
 
@@ -68,8 +63,8 @@ component extends="app.controllers.Controller" {
 	* Get Filter Data
 	**/
 	private function getFilterTypes(){
-		logtypes = model("auditlog").findAll(select="DISTINCT type AS logtype");
-		severitytypes = model("auditlog").findAll(select="DISTINCT severity AS severitytype");
+		logtypes = model("auditlog").getAuditLogBySelect("DISTINCT type AS logtype");
+		severitytypes = model("auditlog").getAuditLogBySelect("DISTINCT severity AS severitytype");
 	}
 	/**
 	* Redirect away if verifies fails, or if an object can't be found

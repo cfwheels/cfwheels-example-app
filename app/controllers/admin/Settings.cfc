@@ -9,7 +9,7 @@ component extends="app.controllers.Controller" {
 	* View all settings
 	**/
 	function index() {
-		settings=model("setting").findAll(order="name");
+		settings=model("setting").getSetting();
 		settingCategories=[];
 		for(setting in settings){
 			var s=listFirst(setting.name, "_");
@@ -23,14 +23,15 @@ component extends="app.controllers.Controller" {
 	* Edit setting
 	**/
 	function edit() {
-		setting=model("setting").findByKey(key=params.key, where="editable = 1");
+		
+		setting=model("setting").getSettingById(params.key);
 	}
 
 	/**
 	* Update setting
 	**/
 	function update() {
-		setting=model("setting").findByKey(key=params.key, where="editable = 1");
+		setting=model("setting").getSettingById(params.key);
 		if(setting.update(params.setting)){
 			redirectTo(action="index", success="Setting successfully updated: you must reload the application for these to take effect.");
 		} else {

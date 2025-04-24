@@ -115,5 +115,16 @@ component extends="Model" {
 		return Replace(LCase(CreateUUID()), "-", "", "all");
 	}
 
+	function getUsers(required array where, required bool includeSoftDeletes, required number page, required number perpage) {
+		return findAll(where=whereify(arguments.where), page=arguments.page, includeSoftDeletes=arguments.includeSoftDeletes, perpage=arguments.perpage, include="role");
+	}
+
+	function getUserById(required string key) {
+		return findByKey(arguments.key);
+	}
+
+	function getUserRoleById(required string key) {
+		return findByKey(key=arguments.key, include="role");
+	}
 
 }

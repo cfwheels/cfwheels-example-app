@@ -51,14 +51,14 @@ component extends="app.controllers.Controller" {
 				arrayAppend(local.where, whereify(local.qWhere, "OR"));
 			}
 		}
-		users=model("user").findAll(where=whereify(local.where), page=params.page, includeSoftDeletes=local.includeSoftDeletes, perpage=params.perpage, include="role");
+		users=model("user").getUsers(local.where, local.includeSoftDeletes, params.page, params.perpage);
 	}
 
 	/**
 	* View User
 	**/
 	function show() {
-		user=model("user").findByKey(key=params.key, include="role");
+		user=model("user").getUserRoleById(params.key);
 		if(!isObject(user)){
 			objectNotFound();
 		}
@@ -90,7 +90,7 @@ component extends="app.controllers.Controller" {
 	* Edit User
 	**/
 	function edit() {
-		user=model("user").findByKey(params.key);
+		user=model("user").getUserById(params.key);
 		if(!isObject(user)){
 			objectNotFound();
 		}
@@ -100,7 +100,7 @@ component extends="app.controllers.Controller" {
 	* Update User
 	**/
 	function update() {
-		user=model("user").findByKey(params.key);
+		user=model("user").getUserById(params.key);
 		// Protected properties we need to set manually
 		user.roleid = params.user.roleid;
 		user.verified = params.user.verified;
@@ -150,7 +150,7 @@ component extends="app.controllers.Controller" {
 	 * See https://github.com/cfwheels/cfwheels/issues/841
 	 */
 	function reset() {
-		user=model("user").findByKey(params.key);
+		user=model("user").getUserById(params.key);
 		user.resetPassword();
 		// password is currently in plaintext as it's skipped validation
 		// Grab it so we can use it in emails
@@ -178,7 +178,7 @@ component extends="app.controllers.Controller" {
 	 * Take care that you only permit the highest role access.
 	 */
 	function assume() {
-		requestedUser=model("user").findByKey(params.key);
+		requestedUser=model("user").getUserById(params.key);
 		if(isObject(requestedUser)){
 			addLogLine(type="security", severity="danger", message="User assumed user id: #requesteduser.id#: #requesteduser.email#");
 			assignPermissions(requestedUser);

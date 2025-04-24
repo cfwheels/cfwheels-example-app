@@ -22,4 +22,12 @@ component extends="Model" {
 		if(structKeyExists(this, "value") && isJSON(this.value))
 			this.value=deserializeJSON(this.value);
 	}
+
+	function getSetting(){
+		return findAll(order="name");
+	}
+	
+	function getSettingById(required string key){
+		return findByKey(key=arguments.key, where="editable = 1");
+	}
 }
