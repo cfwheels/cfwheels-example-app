@@ -75,11 +75,8 @@ component extends="app.controllers.Controller" {
 	* Create User
 	**/
 	function create() {
-		user=model("user").new(params.user);
-		// Protected properties we need to set manually
-		user.roleid = params.user.roleid;
-		user.verified = params.user.verified;
-		if(user.save()){
+		created = model("user").createUser(params.user)
+		if(created){
 			redirectTo(action="index", success="User successfully created");
 		} else {
 			renderView(action="new");
@@ -100,11 +97,8 @@ component extends="app.controllers.Controller" {
 	* Update User
 	**/
 	function update() {
-		user=model("user").getUserById(params.key);
-		// Protected properties we need to set manually
-		user.roleid = params.user.roleid;
-		user.verified = params.user.verified;
-		if(user.update(params.user)){
+		updated = model("user").updateUserByKey(params.key, params.user);
+		if(updated){
 			redirectTo(action="index", success="User successfully updated");
 		} else {
 			renderView(action="edit");

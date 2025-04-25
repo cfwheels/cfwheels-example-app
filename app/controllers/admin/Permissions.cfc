@@ -25,8 +25,8 @@ component extends="app.controllers.Controller" {
 	* Update permission
 	**/
 	function update() {
-		permission=model("permission").getPermissionByKey(params.key);
-		if(permission.update(params.permission)){
+		updated = model("Permission").updatePermissionByKey(params.key, params.permission);
+		if(updated){
 			redirectTo(action="index", success="Permission successfully updated: you must reload the application for these to take effect.");
 		} else {
 			renderView(action="edit");

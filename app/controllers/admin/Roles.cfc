@@ -22,8 +22,8 @@ component extends="app.controllers.Controller" {
 	* Create Role
 	**/
 	function create() {
-		role=model("Role").create(params.Role);
-		if(Role.hasErrors()){
+		role=model("Role").createRole(params.Role);
+		if(role.hasErrors()){
 			renderView(action="new");
 		} else {
 			redirectTo(action="index", success="Role successfully created");
@@ -40,8 +40,8 @@ component extends="app.controllers.Controller" {
 	* Update role
 	**/
 	function update() {
-		role=model("role").getRoleById(params.key);
-		if(role.update(params.role)){
+		updated = model("role").updateRoleByKey(params.key, params.role);
+		if(updated){
 			redirectTo(action="index", success="Role successfully updated");
 		} else {
 			renderView(action="edit");

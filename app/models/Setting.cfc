@@ -30,4 +30,13 @@ component extends="Model" {
 	function getSettingById(required string key){
 		return findByKey(key=arguments.key, where="editable = 1");
 	}
+
+	function updateSettingByKey(required string key, required struct settingData) {
+		setting=findByKey(arguments.key);
+		if (setting.update(arguments.settingData)) {
+			return true;
+		} else {
+		  return false;
+		}
+	}
 }

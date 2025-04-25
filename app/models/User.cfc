@@ -127,4 +127,28 @@ component extends="Model" {
 		return findByKey(key=arguments.key, include="role");
 	}
 
+	function createUser(required struct userData) {
+		user=new(arguments.userData);
+		// Protected properties we need to set manually
+		user.roleid = arguments.userData.roleid;
+		user.verified = arguments.userData.verified;
+		if(user.save()) {
+			return true;
+		} else {
+		  return false;
+		}
+	}
+
+	function updateUserByKey(required string key, required struct userData) {
+		user=getUserById(arguments.key);
+		// Protected properties we need to set manually
+		user.roleid = arguments.userData.roleid;
+		user.verified = arguments.userData.verified;
+		if (user.update(arguments.userData)) {
+			return true;
+		} else {
+		  return false;
+		}
+	}
+
 }

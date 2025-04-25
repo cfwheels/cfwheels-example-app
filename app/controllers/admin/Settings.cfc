@@ -31,8 +31,8 @@ component extends="app.controllers.Controller" {
 	* Update setting
 	**/
 	function update() {
-		setting=model("setting").getSettingById(params.key);
-		if(setting.update(params.setting)){
+		updated=model("setting").updateSettingByKey(params.key, params.setting);
+		if(updated){
 			redirectTo(action="index", success="Setting successfully updated: you must reload the application for these to take effect.");
 		} else {
 			renderView(action="edit");

@@ -47,4 +47,13 @@ component extends="Model"
 		return findByKey(key=arguments.key, include="rolepermissions");
 	}
 
+	function updatePermissionByKey(required string key, required struct permissionData) {
+		permission=getPermissionByKey(arguments.key);
+		if (permission.update(arguments.permissionData)) {
+			return true;
+		} else {
+		  return false;
+		}
+	}
+
 }

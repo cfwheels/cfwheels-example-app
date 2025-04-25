@@ -21,4 +21,18 @@ component extends="Model" {
 		return findByKey(key=arguments.key);
 	}
 
+	function createRole(required struct roleData) {
+		role = create(arguments.roleData)
+		return role;
+	}
+
+	function updateRoleByKey(required string key, required struct roleData) {
+		role=getRoleById(arguments.key);
+		if (role.update(arguments.roleData)) {
+			return true;
+		} else {
+		  return false;
+		}
+	}
+
 }
