@@ -9,7 +9,7 @@
 	* [category: Filters]
 	*/
 	private function filterGetAllRoles() {
-		roles=model("role").findAll(order="name");
+		roles=model("role").getRolesOrderBy();
 	}
 
 	/**

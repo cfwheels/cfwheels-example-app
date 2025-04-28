@@ -97,7 +97,7 @@ component extends="app.controllers.Controller" {
 	* Update User
 	**/
 	function update() {
-		updated = model("user").updateUserByKey(params.key, params.user);
+		updated = model("user").updateUserByKey(params.userkey, params.user);
 		if(updated){
 			redirectTo(action="index", success="User successfully updated");
 		} else {
@@ -109,7 +109,7 @@ component extends="app.controllers.Controller" {
 	* Disable / Soft Delete User
 	**/
 	function delete() {
-		if(model("user").deleteByKey(params.key)){
+		if(model("user").softDeleteUser(params.key)){
 			redirectTo(action="index", success="User successfully disabled");
 		} else {
 			redirectTo(action="index", error="Couldn't disable user");
@@ -120,7 +120,7 @@ component extends="app.controllers.Controller" {
 	 * Destroy (Permanent Delete) User
 	 */
 	function destroy() {
-		if(model("user").deleteByKey(key=params.key, includeSoftDeletes=true, softDelete=false)){
+		if(model("user").deleteUser(params.key)){
 			redirectTo(action="index", success="User successfully deleted");
 		} else {
 			redirectTo(action="index", error="Couldn't delete user");
@@ -131,7 +131,7 @@ component extends="app.controllers.Controller" {
 	 * Recover User
 	 */
 	function recover() {
-		if(model("user").updateByKey(key=params.key, includeSoftDeletes=true, deletedAt = "")){
+		if(model("user").recoverUser(key=params.key)){
 			redirectTo(action="index", success="User successfully recovered");
 		} else {
 			redirectTo(action="index", error="Couldn't recover user");

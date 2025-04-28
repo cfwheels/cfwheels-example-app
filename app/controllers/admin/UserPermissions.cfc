@@ -10,7 +10,7 @@ component extends="app.controllers.Controller" {
 	* View all user permissions for a user
 	**/
 	function index() {
-		user=model("user").getUserRoleById(params.key);
+		user=model("user").getUserRoleById(params.userkey);
 		allpermissions=model("permission").getPermissions();
 		rolePermissions=getRolePermissions(user.roleid);
 		userPermissions=getUserPermissions(user.id);

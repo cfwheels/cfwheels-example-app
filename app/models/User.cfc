@@ -151,4 +151,28 @@ component extends="Model" {
 		}
 	}
 
+	function softDeleteUser(required string key) {
+		if (deleteByKey(arguments.key)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function deleteUser(required string key) {
+		if (deleteByKey(key=arguments.key, includeSoftDeletes=true, softDelete=false)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function recoverUser(required string key) {
+		if (updateByKey(key=arguments.key, includeSoftDeletes=true, deletedAt = "")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
