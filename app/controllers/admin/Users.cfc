@@ -97,7 +97,7 @@ component extends="app.controllers.Controller" {
 	* Update User
 	**/
 	function update() {
-		updated = model("user").updateUserByKey(params.userkey, params.user);
+		updated = model("user").updateUserByKey(params.key, params.user);
 		if(updated){
 			redirectTo(action="index", success="User successfully updated");
 		} else {
