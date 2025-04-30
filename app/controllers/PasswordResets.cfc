@@ -18,31 +18,35 @@ component extends="Controller"
 	* New Forgot password form submission to create passwordReset
 	**/
 	function create(){
-		user=model("user").findOneByEmail(params.email);
-		if(!isObject(user)){
-			genericError();
-		} else {
-			// Check this account isn't pending verification
-			if(!user.verified){
-				redirectTo(route="login", error="Sorry, your account is still pending verification");
-			}
-
-			// Generate and save token
-			user.generatePasswordResetToken();
-			if(!user.save()){
+		try{
+			user=model("user").findOneByEmail(params.email);
+			if(!isObject(user)){
 				genericError();
 			} else {
-				// Send Reset Email
-				if(getSetting("email_send")){
-					sendEmail(
-						to=user.email,
-						from=getSetting("email_fromAddress"),
-						subject="Password Reset Request",
-						template="/emails/passwordReset,/emails/passwordResetPlain",
-						user=user);
+				// Check this account isn't pending verification
+				if(!user.verified){
+					redirectTo(route="login", error="Sorry, your account is still pending verification");
 				}
-				return redirectTo(route="login", success="A password reset email has been sent to you!");
-			}
+
+				// Generate and save token
+				user.generatePasswordResetToken();
+				if(!user.save()){
+					genericError();
+				} else {
+					// Send Reset Email
+					if(getSetting("email_send")){
+						sendEmail(
+							to=user.email,
+							from=getSetting("email_fromAddress"),
+							subject="Password Reset Request",
+							template="/emails/passwordReset,/emails/passwordResetPlain",
+							user=user);
+					}
+					return redirectTo(route="login", success="A password reset email has been sent to you!");
+				}
+			}	
+		}catch (any e) {
+			redirectTo(action="new", error="Error: #e.message#");
 		}
 	}
 
@@ -57,16 +61,20 @@ component extends="Controller"
 	* Other properties. Which would be bad.
 	**/
 	function update(){
-		user.password=params.user.password;
-		user.passwordConfirmation=params.user.passwordConfirmation;
-		if(user.save()){
-			// Remove password reset token etc
-			user.clearPasswordResetToken();
-			// Resave
-			user.save();
-			redirectTo(route="login", success="Your password has been updated and you're free to login");
-		} else {
- 			renderView(action="edit");
+		try{
+			user.password=params.user.password;
+			user.passwordConfirmation=params.user.passwordConfirmation;
+			if(user.save()){
+				// Remove password reset token etc
+				user.clearPasswordResetToken();
+				// Resave
+				user.save();
+				redirectTo(route="login", success="Your password has been updated and you're free to login");
+			} else {
+				renderView(action="edit");
+			}	
+		}catch (any e) {
+			redirectTo(action="edit", error="Error: #e.message#");
 		}
 	}
 

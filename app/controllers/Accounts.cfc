@@ -20,13 +20,17 @@ component extends="app.controllers.Controller" {
 	 * We're being more explicit in what properties the user can update on their own account here
 	 */
 	function update() {
-		user.firstname = params.user.firstname;
-		user.lastname = params.user.lastname;
-		user.email = params.user.email;
-		if(user.save()){
-			redirectTo(action="show", success="Account successfully updated");
-		} else {
-			renderView(action="edit");
+		try{
+			user.firstname = params.user.firstname;
+			user.lastname = params.user.lastname;
+			user.email = params.user.email;
+			if(user.save()){
+				redirectTo(action="show", success="Account successfully updated");
+			} else {
+				renderView(action="edit");
+			}	
+		}catch (any e) {
+			redirectTo(action="edit", error="Error: #e.message#");
 		}
 	}
 
@@ -39,26 +43,30 @@ component extends="app.controllers.Controller" {
 	 * Reset password action
 	 */
 	function updatePassword() {
-		// Check old password
-		if(!user.checkPassword(params.user.oldpassword))
-			redirectTo(back=true, error="Your old password was incorrect");
-		// Carry on
-		user.password=params.user.password;
-		user.passwordConfirmation=params.user.passwordConfirmation;
+		try{
+			// Check old password
+			if(!user.checkPassword(params.user.oldpassword))
+				redirectTo(back=true, error="Your old password was incorrect");
+			// Carry on
+			user.password=params.user.password;
+			user.passwordConfirmation=params.user.passwordConfirmation;
 
-		if(user.save()){
+			if(user.save()){
 
-			// If this has been completed as part of a forced password change, reset all the flags; don't do this until
-			// the password change has been successful.
-			if(hasPasswordResetBlock()){
-				user.passwordChangeRequired=0;
-				user.save();
-				clearPasswordResetBlock();
-			}
+				// If this has been completed as part of a forced password change, reset all the flags; don't do this until
+				// the password change has been successful.
+				if(hasPasswordResetBlock()){
+					user.passwordChangeRequired=0;
+					user.save();
+					clearPasswordResetBlock();
+				}
 
-			redirectTo(action="show", success="Password successfully updated");
-		} else {
-			renderView(action="resetPassword");
+				redirectTo(action="show", success="Password successfully updated");
+			} else {
+				renderView(action="resetPassword");
+			}	
+		}catch (any e) {
+			redirectTo(action="resetPassword", error="Error: #e.message#");
 		}
 	}
 

@@ -9,7 +9,11 @@ component extends="app.controllers.Controller" {
 	* View all roles
 	**/
 	function index() {
-		roles=model("role").getRoles();
+		try{
+			roles=model("role").getRoles();
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
+		}
 	}
 	/**
 	* Add New Role
@@ -22,29 +26,41 @@ component extends="app.controllers.Controller" {
 	* Create Role
 	**/
 	function create() {
-		role=model("Role").createRole(params.Role);
-		if(role.hasErrors()){
-			renderView(action="new");
-		} else {
-			redirectTo(action="index", success="Role successfully created");
-		}
+		try {
+			role=model("Role").createRole(params.Role);
+			if(role.hasErrors()){
+				renderView(action="new");
+			} else {
+				redirectTo(action="index", success="Role successfully created");
+			}
+		} catch (any e) {
+			redirectTo(action="new", error="Error: #e.message#");
+		}	
 	}
 	/**
 	* Edit role
 	**/
 	function edit() {
-		role=model("role").getRoleById(params.key);
+		try{
+			role=model("role").getRoleById(params.key);
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
+		}
 	}
 
 	/**
 	* Update role
 	**/
 	function update() {
-		updated = model("role").updateRoleByKey(params.key, params.role);
-		if(updated){
-			redirectTo(action="index", success="Role successfully updated");
-		} else {
-			renderView(action="edit");
+		try {
+			updated = model("role").updateRoleByKey(params.key, params.role);
+			if(updated){
+				redirectTo(action="index", success="Role successfully updated");
+			} else {
+				renderView(action="edit");
+			}
+		} catch (any e) {
+			redirectTo(action="edit", error="Error: #e.message#");
 		}
 	}
 

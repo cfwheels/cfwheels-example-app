@@ -75,12 +75,16 @@ component extends="app.controllers.Controller" {
 	* Create User
 	**/
 	function create() {
-		created = model("user").createUser(params.user)
-		if(created){
-			redirectTo(action="index", success="User successfully created");
-		} else {
-			renderView(action="new");
-		}
+		try {
+			created = model("user").createUser(params.user)
+			if(created){
+				redirectTo(action="index", success="User successfully created");
+			} else {
+				renderView(action="new");
+			}
+		} catch (any e) {
+			redirectTo(action="new", error="Error: #e.message#");
+		}	
 	}
 
 	/**
@@ -97,22 +101,30 @@ component extends="app.controllers.Controller" {
 	* Update User
 	**/
 	function update() {
-		updated = model("user").updateUserByKey(params.key, params.user);
-		if(updated){
-			redirectTo(action="index", success="User successfully updated");
-		} else {
-			renderView(action="edit");
-		}
+		try {
+			updated = model("user").updateUserByKey(params.key, params.user);
+			if(updated){
+				redirectTo(action="index", success="User successfully updated");
+			} else {
+				renderView(action="edit");
+			}
+		} catch (any e) {
+			redirectTo(action="new", error="Error: #e.message#");
+		}	
 	}
 
 	/**
 	* Disable / Soft Delete User
 	**/
 	function delete() {
-		if(model("user").softDeleteUser(params.key)){
-			redirectTo(action="index", success="User successfully disabled");
-		} else {
-			redirectTo(action="index", error="Couldn't disable user");
+		try{
+			if(model("user").softDeleteUser(params.key)){
+				redirectTo(action="index", success="User successfully disabled");
+			} else {
+				redirectTo(action="index", error="Couldn't disable user");
+			}
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
 		}
 	}
 
@@ -120,10 +132,14 @@ component extends="app.controllers.Controller" {
 	 * Destroy (Permanent Delete) User
 	 */
 	function destroy() {
-		if(model("user").deleteUser(params.key)){
-			redirectTo(action="index", success="User successfully deleted");
-		} else {
-			redirectTo(action="index", error="Couldn't delete user");
+		try{
+			if(model("user").deleteUser(params.key)){
+				redirectTo(action="index", success="User successfully deleted");
+			} else {
+				redirectTo(action="index", error="Couldn't delete user");
+			}	
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
 		}
 	}
 
@@ -131,10 +147,14 @@ component extends="app.controllers.Controller" {
 	 * Recover User
 	 */
 	function recover() {
-		if(model("user").recoverUser(key=params.key)){
-			redirectTo(action="index", success="User successfully recovered");
-		} else {
-			redirectTo(action="index", error="Couldn't recover user");
+		try{
+			if(model("user").recoverUser(key=params.key)){
+				redirectTo(action="index", success="User successfully recovered");
+			} else {
+				redirectTo(action="index", error="Couldn't recover user");
+			}	
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
 		}
 	}
 
@@ -144,27 +164,31 @@ component extends="app.controllers.Controller" {
 	 * See https://github.com/cfwheels/cfwheels/issues/841
 	 */
 	function reset() {
-		user=model("user").getUserById(params.key);
-		user.resetPassword();
-		// password is currently in plaintext as it's skipped validation
-		// Grab it so we can use it in emails
-		tempPassword = user.password;
-		// Now hash it and send email
-		user.hashPassword();
-		if(user.save()){
-			addLogLine(type="security", severity="warning", message="User issued new temporary password");
-			// Send Reset Email
-			if(getSetting("email_send")){
-				sendEmail(
-					to=user.email,
-					from=getSetting("email_fromAddress"),
-					subject="Your Password has been reset",
-					template="/emails/passwordResetAdmin,/emails/passwordResetAdminPlain",
-					user=user,
-					tempPassword=tempPassword);
+		try{
+			user=model("user").getUserById(params.key);
+			user.resetPassword();
+			// password is currently in plaintext as it's skipped validation
+			// Grab it so we can use it in emails
+			tempPassword = user.password;
+			// Now hash it and send email
+			user.hashPassword();
+			if(user.save()){
+				addLogLine(type="security", severity="warning", message="User issued new temporary password");
+				// Send Reset Email
+				if(getSetting("email_send")){
+					sendEmail(
+						to=user.email,
+						from=getSetting("email_fromAddress"),
+						subject="Your Password has been reset",
+						template="/emails/passwordResetAdmin,/emails/passwordResetAdminPlain",
+						user=user,
+						tempPassword=tempPassword);
+				}
 			}
+			redirectTo(back=true, info="New temp password sent to user");	
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
 		}
-		redirectTo(back=true, info="New temp password sent to user");
 	}
 
 	/**
@@ -172,15 +196,19 @@ component extends="app.controllers.Controller" {
 	 * Take care that you only permit the highest role access.
 	 */
 	function assume() {
-		requestedUser=model("user").getUserById(params.key);
-		if(isObject(requestedUser)){
-			addLogLine(type="security", severity="danger", message="User assumed user id: #requesteduser.id#: #requesteduser.email#");
-			assignPermissions(requestedUser);
-			// Redirect to the root here, as otherwise if you assume a user with lower permissions, you'll throw a 403 if you try
-			// and access the user index
-			redirectTo(route="root", success="You have assumed a different account");
-		} else {
-			objectNotFound();
+		try{
+			requestedUser=model("user").getUserById(params.key);
+			if(isObject(requestedUser)){
+				addLogLine(type="security", severity="danger", message="User assumed user id: #requesteduser.id#: #requesteduser.email#");
+				assignPermissions(requestedUser);
+				// Redirect to the root here, as otherwise if you assume a user with lower permissions, you'll throw a 403 if you try
+				// and access the user index
+				redirectTo(route="root", success="You have assumed a different account");
+			} else {
+				objectNotFound();
+			}	
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
 		}
 	}
 

@@ -9,13 +9,17 @@ component extends="app.controllers.Controller" {
 	* View all settings
 	**/
 	function index() {
-		settings=model("setting").getSetting();
-		settingCategories=[];
-		for(setting in settings){
-			var s=listFirst(setting.name, "_");
-			if(!arrayFind(settingCategories, s)){
-				arrayAppend(settingCategories, s);
+		try{
+			settings=model("setting").getSetting();
+			settingCategories=[];
+			for(setting in settings){
+				var s=listFirst(setting.name, "_");
+				if(!arrayFind(settingCategories, s)){
+					arrayAppend(settingCategories, s);
+				}
 			}
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
 		}
 	}
 
@@ -23,20 +27,28 @@ component extends="app.controllers.Controller" {
 	* Edit setting
 	**/
 	function edit() {
+		try{
+			setting=model("setting").getSettingById(params.key);
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
+		}
 		
-		setting=model("setting").getSettingById(params.key);
 	}
 
 	/**
 	* Update setting
 	**/
 	function update() {
-		updated=model("setting").updateSettingByKey(params.key, params.setting);
-		if(updated){
-			redirectTo(action="index", success="Setting successfully updated: you must reload the application for these to take effect.");
-		} else {
-			renderView(action="edit");
-		}
+		try {
+			updated=model("setting").updateSettingByKey(params.key, params.setting);
+			if(updated){
+				redirectTo(action="index", success="Setting successfully updated: you must reload the application for these to take effect.");
+			} else {
+				renderView(action="edit");
+			}
+		} catch (any e) {
+			redirectTo(action="edit", error="Error: #e.message#");
+		}	
 	}
 
 	/**

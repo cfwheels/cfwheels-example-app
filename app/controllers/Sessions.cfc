@@ -19,14 +19,18 @@ component extends="app.controllers.Controller" {
 	* Creates the session
 	**/
 	function create(){
-		auth=model("auth." & getSetting('authentication_gateway')).new(params.auth);
-		if(!auth.hasErrors() && auth.login()){
-			addLogLine(type="auth", severity="info", message="User #getSession().user.properties.email# successfully logged in");
-			redirectTo(route="root");
-		} else {
-			addLogLine(type="auth", severity="danger", message="Failed Login", data=auth.allErrors());
-			// TO DO : add brute force attack mitigation
-			renderView(action="new");
+		try{
+			auth=model("auth." & getSetting('authentication_gateway')).new(params.auth);
+			if(!auth.hasErrors() && auth.login()){
+				addLogLine(type="auth", severity="info", message="User #getSession().user.properties.email# successfully logged in");
+				redirectTo(route="root");
+			} else {
+				addLogLine(type="auth", severity="danger", message="Failed Login", data=auth.allErrors());
+				// TO DO : add brute force attack mitigation
+				renderView(action="new");
+			}	
+		}catch (any e) {
+			redirectTo(action="new", error="Error: #e.message#");
 		}
 	}
 
@@ -34,22 +38,30 @@ component extends="app.controllers.Controller" {
 	* Logs out a user
 	**/
 	function delete(){
-		// Grab this before killing getSession()
-		var nameofLogginOutUser=getSession().user.properties.email;
-		// Kill session
-		forcelogout();
-		// Add Log
-		addLogLine(type="auth", severity="info", message="User #nameofLogginOutUser# logged out");
-		// does this insertFlash ever work?
-		redirectTo(route="root", success="You have been logged out");
+		try{
+			// Grab this before killing getSession()
+			var nameofLogginOutUser=getSession().user.properties.email;
+			// Kill session
+			forcelogout();
+			// Add Log
+			addLogLine(type="auth", severity="info", message="User #nameofLogginOutUser# logged out");
+			// does this insertFlash ever work?
+			redirectTo(route="root", success="You have been logged out");			
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
+		}
 	}
 
 	/**
 	* Forgets a users remember me cookie
 	**/
 	function forget(){
-		deleteCookieRememberEmail();
-		redirectTo(route="login");
+		try{
+			deleteCookieRememberEmail();
+			redirectTo(route="login");	
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
+		}
 	}
 
 	/**

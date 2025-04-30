@@ -10,26 +10,39 @@ component extends="app.controllers.Controller" {
 	* View all permissions
 	**/
 	function index() {
-		allroles=model("role").getRolesOrderBy();
-		allpermissions=model("permission").getPermissions();
+		try{
+			allroles=model("role").getRolesOrderBy();
+			allpermissions=model("permission").getPermissions();
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
+		}
+		
 	}
 
 	/**
 	* Edit permission
 	**/
 	function edit() {
-		permission=model("permission").getRolePermissionByKey(params.key);
+		try{
+			permission=model("permission").getRolePermissionByKey(params.key);
+		}catch (any e) {
+			redirectTo(action="index", error="Error: #e.message#");
+		}
 	}
 
 	/**
 	* Update permission
 	**/
 	function update() {
+		try {
 		updated = model("Permission").updatePermissionByKey(params.key, params.permission);
-		if(updated){
-			redirectTo(action="index", success="Permission successfully updated: you must reload the application for these to take effect.");
-		} else {
-			renderView(action="edit");
+			if(updated){
+				redirectTo(action="index", success="Permission successfully updated: you must reload the application for these to take effect.");
+			} else {
+				renderView(action="edit");
+			}
+		} catch (any e) {
+			redirectTo(action="edit", error="Error: #e.message#");
 		}
 	}
 
