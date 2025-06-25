@@ -1,4 +1,4 @@
-component extends="Controller"
+component extends="app.controllers.Controller"
 {
 	function config() {
 		super.config(redirectAuthenticatedUsers=true);

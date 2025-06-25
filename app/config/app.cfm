@@ -59,7 +59,11 @@
 	// Set cookies to SSL Only
 	// Set this to true if you're Using SSL!
 	// Only set to false for easy local development
-	this.sessioncookie.secure = false;
+	if ((cgi.server_name != "127.0.0.1" && cgi.server_name != "localhost")) {
+		this.sessioncookie.secure = true;
+	} else {
+		this.sessioncookie.secure = false;
+	}
 
 	// max lifespan of a running request
 	this.requestTimeout=createTimeSpan(0,0,0,50);
