@@ -19,34 +19,47 @@
  * }
  */
 component extends="wheels.Controller" {
+	/**
+	 * Base controller config method to set up security, access control, and logging filters.
+	 *
+	 * @param boolean protectFromForgery Enable CSRF protection (default: true)
+	 * @param boolean restrictAccess Require permission to access this controller (default: false)
+	 * @param boolean redirectAuthenticatedUsers Redirect logged-in users away (default: false)
+	 * @param boolean logFlash Log flash messages in audit log (default: true)
+	 */
 	function config(
 		boolean protectFromForgery=true,
 		boolean restrictAccess=false,
 		boolean redirectAuthenticatedUsers=false,
 		boolean logFlash=true
 	) {
-		// We can skip CSRF from a sub controller if required
-		if(arguments.protectFromForgery){
-			protectsFromForgery();
+		try {
+			// Enable CSRF protection if requested
+			if(arguments.protectFromForgery){
+				protectsFromForgery();
+			}
+			// Require permission to access this controller
+			if(arguments.restrictAccess){
+				filters(through="checkPermissionAndRedirect");
+			}
+			// Redirect authenticated users away from this controller
+			if(arguments.redirectAuthenticatedUsers){
+				filters(through="redirectAuthenticatedUsers");
+			}
+			// Log flash messages after actions
+			if(arguments.logFlash){
+				filters(through="logFlash", type="after");
+			}
+			// Check for password reset blocks
+			filters(through="checkForPasswordBlock");
+		} catch(any e) {
+			// Log error and rethrow
+			addLogLine(type="controller", message="Error in base controller config: #e.message#", severity="danger");
+			rethrow;
 		}
-		// Require a permission to access this controller?
-		if(arguments.restrictAccess){
-			filters(through="checkPermissionAndRedirect");
-		}
-		// Redirect Authenticated Users away from this controller?
-		// Example would be to not allow registration or password resets to logged in users
-		if(arguments.redirectAuthenticatedUsers){
-			filters(through="redirectAuthenticatedUsers");
-		}
-		// Log the flash in audit log?
-		if(arguments.logFlash){
-			filters(through="logFlash", type="after");
-		}
-		// Check for password blocks
-		filters(through="checkForPasswordBlock");
 	}
 
-	// Include controller wide shared functions
+	// Include controller-wide shared functions for authentication and filters
 	include "functions/auth.cfm";
 	include "functions/filters.cfm";
 }
