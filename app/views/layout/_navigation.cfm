@@ -11,6 +11,11 @@
 
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!---
+          These links should show and hide depending on the Users permissions
+          The only catch with this approach is that they might have a permission "lower" down the chain
+          than the one you're testing for.
+        --->
         <cfif hasPermission("admin.users.index")>
           <li class="nav-item">
             #linkTo(route="users", class="nav-link", text="Users")#
@@ -38,6 +43,10 @@
         </cfif>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+        <!---
+            If the user's logged in, show their Account Link etc
+            Otherwise show a login btn
+        --->
         <cfif isAuthenticated()>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" data-bs-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false">
