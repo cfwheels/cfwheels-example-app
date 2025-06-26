@@ -1,10 +1,10 @@
 <!---
 	The Footer
+	Uses getSetting() for copyright and year(now()) for the current year.
+	No container needed here as the layout provides it.
 --->
 <cfoutput>
-<div class="container">
-	<footer class="pt-5">
-	    <p>#getSetting('general_copyright')# &copy; #year(now())#</p>
-	</footer>
-</div>
+<footer class="bg-light border-top text-center py-4 mt-5 small text-muted w-100">
+    <span>#getSetting('general_copyright')# &copy; #year(now())#</span>
+</footer>
 </cfoutput>
