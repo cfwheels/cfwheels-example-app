@@ -64,6 +64,60 @@ version).
 
 Made with [contrib.rocks](https://contrib.rocks).
 
+# Wheels Example App
+
+## Application Overview
+
+This repository contains a **user management and authentication web application** built with the [Wheels](https://wheels.dev/) framework (version 3.x), a modern MVC framework inspired by Ruby on Rails. The app demonstrates best practices for Wheels 3.0, including security, conventions, and a modern UI using Bootstrap.
+
+---
+
+## Key Features
+
+- **User Registration & Verification:**  
+  Users can register, receive a verification email, and verify their account before logging in.
+
+- **Authentication:**  
+  Secure login and logout, with support for password resets and brute-force protection (noted as a TODO).
+
+- **Account Management:**  
+  Authenticated users can view and update their account details, including changing their password.
+
+- **Admin Panel:**  
+  Admin users can:
+  - Manage users (create, edit, disable, delete, recover, reset passwords, and even assume another user's identity for troubleshooting).
+  - Manage roles and permissions (RBAC: Role-Based Access Control).
+  - Assign and remove permissions for users and roles.
+  - View and filter audit logs for security and activity tracking.
+  - Manage application settings.
+
+- **Security:**  
+  - CSRF protection on all forms.
+  - Input validation and sanitization.
+  - Role and permission checks for all admin actions.
+  - Audit logging for sensitive actions.
+
+- **Email Notifications:**  
+  - Account verification and password reset emails.
+  - Admin password reset notifications.
+
+- **Modern UI:**  
+  - Uses Bootstrap for a clean, responsive design.
+  - All forms and navigation use Wheels helpers for consistency and security.
+
+---
+
+## Intended Audience
+
+- **Developers** looking for a reference or starter app for Wheels 3.x.
+- **Teams** wanting to learn or demonstrate best practices in Wheels MVC development.
+
+---
+
+## Summary
+
+**This application is not a complete, full-featured app, but rather a skeleton/example app built with Wheels 3.x. It is designed to help you get started and to showcase best practices in authentication, authorization, auditing, and modern web UI using Wheels.**
+
 [1]: https://wheels.dev/
 [2]: https://guides.cfwheels.org/introduction/readme/beginner-tutorial-hello-world
 [3]: https://guides.cfwheels.org/working-with-cfwheels/contributing-to-cfwheels
