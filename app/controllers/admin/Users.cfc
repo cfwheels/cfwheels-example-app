@@ -45,9 +45,9 @@ component extends="app.controllers.Controller" {
 			if(len(params.q) GT 50){
 				params.q = "";
 			} else {
-				arrayAppend(local.qWhere, "firstname LIKE '%#params.q#%'");
-				arrayAppend(local.qWhere, "lastname LIKE '%#params.q#%'");
-				arrayAppend(local.qWhere, "email LIKE '%#params.q#%'");
+				arrayAppend(local.qWhere, "firstname LIKE '%#sanitizedQ#%'");
+				arrayAppend(local.qWhere, "lastname LIKE '%#sanitizedQ#%'");
+				arrayAppend(local.qWhere, "email LIKE '%#sanitizedQ#%'");
 				arrayAppend(local.where, whereify(local.qWhere, "OR"));
 			}
 		}
