@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Model Enhancements
 - PR-1326-ignoreColumns model config method [#1326](https://github.com/cfwheels/cfwheels/pull/1326) - [Adam Chapman](https://github.com/chapmandu)
+- PR-1568-issue #432 improved model initialization to handle race conditions with better error handling and automatic recovery [#1568](https://github.com/wheels-dev/wheels/pull/1568) - [Zain Ul Abideen](https://github.com/zainforbjs)
 
 ### View Enhancements
 
@@ -261,7 +262,7 @@ This release finalizes the 2.3.0 release and doesn't include any new enhancement
 ### Bug Fixes
 
 - Fixed pagination order ambiguous column name exception - [#980](https://github.com/cfwheels/cfwheels/issues/#980) [Adam Chapman, Mike Lange]
-- Renames findLast() to findLastOne() for lucee@5.3.5+92 upwards compatibility [#988](https://github.com/cfwheels/cfwheels/issues/#988)
+- Renames findLast() to findLastOne() for lucee5.3.5+92 upwards compatibility [#988](https://github.com/cfwheels/cfwheels/issues/#988)
 
 ----
 
