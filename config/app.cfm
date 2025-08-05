@@ -9,23 +9,20 @@
 	// this.name = "exampleApp";
 
 	this.datasources["exampleApp"] = {
-		class: "com.mysql.cj.jdbc.Driver", 
-		bundleName: "com.mysql.cj", 
-		bundleVersion: "9.3.0",
-		connectionString: "jdbc:mysql://localhost:3306/wheelsExampleApp?characterEncoding=UTF-8&serverTimezone=Asia/Karachi&maxReconnects=3",
-		username: "root",
-		password: "encrypted:2a26eae88f2d1144bde37c5aef530354ee689c2ec7c6306877a4b34b41ae6999",
+		class: this.env.DB_CLASS, 
+		bundleName: this.env.DB_BUNDLENAME, 
+		bundleVersion: this.env.DB_BUNDLEVERSION,
+		connectionString: "jdbc:mysql://#this.env.DB_HOST#:#this.env.DB_PORT#/#this.env.DB_NAME#?characterEncoding=UTF-8&serverTimezone=Asia/Karachi&maxReconnects=3",
+		username: this.env.DB_USER,
+		password: "encrypted:#this.env.DB_PASSWORD#",
 		
 		// optional settings
-		connectionLimit:-1, // default:-1
-		liveTimeout:15, // default: -1; unit: minutes
-		alwaysSetTimeout:true, // default: false
-		validate:false // default: false
+		connectionLimit: val(this.env.DB_CONNECTIONLIMIT), // default:-1
+		liveTimeout: val(this.env.DB_LIVETIMEOUT), // default: -1; unit: minutes
+		alwaysSetTimeout: this.env.DB_ALWAYSSETTIMEOUT EQ "true", // default: false
+		validate: this.env.DB_VALIDATE EQ "true" // default: false
 		
 	};
-
-	// CLI-Appends-Here
-
 
 	/*
 		Place settings that should go in the Application.cfc's "this" scope here.
