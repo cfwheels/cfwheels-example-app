@@ -16,3 +16,4 @@ settings.json
 .vscode
 /plugins/**/
 .env
+/vendor

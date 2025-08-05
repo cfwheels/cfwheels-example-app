@@ -1,1 +1,0 @@
-<cfoutput>[#variables.message#]</cfoutput>

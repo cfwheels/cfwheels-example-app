@@ -1,1 +1,0 @@
-<cfoutput>#linkTo(route="sampleLinkToTestTarget",text="Click Me")#</cfoutput>

@@ -1,3 +1,0 @@
-04-09 12:09:51 jdbc[2]: exception
-org.h2.jdbc.JdbcSQLException: Table "MIGRATORVERSIONS" not found; SQL statement:
-SELECT version FROM migratorversions ORDER BY version ASC [42102-172]
