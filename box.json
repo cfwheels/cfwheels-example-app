@@ -3,10 +3,12 @@
     "version": "1.0.0",
     "dependencies": {
         "wirebox": "^7.0.0",
-        "testbox": "^5.0.0"
+        "testbox": "^5.0.0",
+        "wheels-core": "*"
     },
     "installPaths": {
         "wirebox": "vendor/wirebox/",
-        "testbox": "vendor/testbox/"
+        "testbox": "vendor/testbox/",
+        "wheels-core": "vendor/wheels/"
     }
 }
