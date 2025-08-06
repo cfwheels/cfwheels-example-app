@@ -1,124 +1,310 @@
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/wheels-dev/wheels/snapshot.yml?style=flat-square&logo=github&label=Wheels%20Snapshots)
-<img src="https://www.forgebox.io/api/v1/entry/cfwheels/badges/version" />
-<img src="https://www.forgebox.io/api/v1/entry/cfwheels/badges/downloads" />
-![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.forgebox.io%2Fapi%2Fv1%2Fentry%2Fcfwheels%2Fbadges%2F&query=%24.data.versions.0.version&style=flat-square&label=Bleeding%20Edge%20Release)
+# Wheels Example Application - Detailed Overview
 
-# Wheels
-
-[Wheels][1] provides fast application development, a great organization system for your code, and is
-just plain fun to use.
-
-One of our biggest goals is for you to be able to get up and running with Wheels quickly. We want for
-you to be able to learn it as rapidly as it is to write applications with it.
-
-## Getting Started
-
-In this [Beginner Tutorial: Hello World][2], we'll be writing a simple application to make sure we have
-Wheels installed properly and that everything is working as it should. Along the way, you'll get to
-know some basics about how applications built on top of Wheels work.
-
-## Environment Variables
-
-This application uses environment variables for sensitive configuration such as SMTP credentials. 
-
-An example file, `.env.example`, is provided in the project root. **Copy this file to `.env` and fill in your actual values.**
-
-```
-SMTP_SERVER=smtp.example.com
-SMTP_PORT=587
-```
-
-The `.env` file is included in `.gitignore` and should not be committed to version control.
-
-## Contributing
-
-We encourage you to contribute to Wheels! Please check out the [Coding Guidelines][3] for guidelines
-about how to proceed. Join us!
-
-## Running Tests
-
-**Before running tests, make sure that all debugging is turned OFF**. This could add a considerable amount
-of time for the tests to complete and may cause your engine to become unresponsive.
-
- 1. Create a database on a supported database server named `wheelstestdb`. At this time the supported
-    database servers are H2, Microsoft SQL Server, PostgreSQL and MySQL.
- 2. Create a datasource in your CFML engine's administrator named `wheelstestdb` pointing to the
-    `wheelstestdb` database and make sure to give it CLOB and BLOB support.
- 3. Open your browser to the Wheels Welcome Page.
- 4. In the gray debug area at the bottom of the page, click the `Run Tests` link next to the version number
-    on the `Framework` line.
-
-Please report any errors that you may encounter on our [issue tracker][4]. Please be sure to report the
-database engine (including version), CFML engine (including version), and HTTP server (including
-version).
-
-## License
-
-[Wheels][1] is released under the Apache License Version 2.0.
-
-## Our Contributors
-
-<a href="https://github.com/cfwheels/cfwheels/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cfwheels/cfwheels" />
-</a>
-
-Made with [contrib.rocks](https://contrib.rocks).
-
-# Wheels Example App
-
-## Application Overview
+## 🚀 What This Is
 
 This repository contains a **user management and authentication web application** built with the [Wheels](https://wheels.dev/) framework (version 3.x), a modern MVC framework inspired by Ruby on Rails. The app demonstrates best practices for Wheels 3.0, including security, conventions, and a modern UI using Bootstrap.
 
+**⚠️ Important**: This is **not a complete, full-featured app**, but rather a **skeleton/example app** built with Wheels 3.x. It is designed to help you get started and to showcase best practices in authentication, authorization, auditing, and modern web UI using Wheels.
+
+## ✨ Key Features
+
+### User Registration & Verification
+- Users can register through a secure registration form
+- Email verification system sends verification emails to new users
+- Account activation only after email verification is complete
+
+### Authentication
+- Secure login and logout functionality
+- Password reset system via email
+- **Note**: Brute-force protection is marked as TODO in the codebase
+
+### Account Management
+- Authenticated users can view their account details
+- Users can update their profile information (name, email)
+- Password change functionality with current password verification
+
+### Admin Panel
+Admin users have access to comprehensive management features:
+
+**User Management:**
+- Create new users
+- Edit existing user details
+- Disable/soft delete users
+- Permanently delete users
+- Recover disabled users
+- Reset user passwords (generates new temp password via email)
+- **Assume User Identity**: Login as another user for troubleshooting (high-privilege feature)
+
+**Role & Permission Management:**
+- Manage roles (create, edit, delete)
+- Manage permissions
+- Assign/remove permissions for users and roles
+- Role-Based Access Control (RBAC) implementation
+
+**System Administration:**
+- View and filter audit logs for security tracking
+- Manage application settings
+- Monitor user activities
+
+### Security Features
+- **CSRF Protection** on all forms using Wheels built-in protection
+- **Input validation and sanitization** on all user inputs
+- **Role and permission checks** for all admin actions
+- **Audit logging** for sensitive actions and changes
+- **Secure password handling** with bcrypt hashing
+
+### Email Notifications
+- Account verification emails for new registrations
+- Password reset emails for forgotten passwords
+- Admin password reset notifications when admins reset user passwords
+
+### Modern UI
+- **Bootstrap 4** for clean, responsive design
+- All forms and navigation use Wheels helpers for consistency and security
+- Mobile-responsive interface
+- Consistent styling across all pages
+
+## 🎯 Intended Audience
+
+- **Developers** looking for a reference or starter app for Wheels 3.x
+- **Teams** wanting to learn or demonstrate best practices in Wheels MVC development
+- **Students** learning modern CFML web development
+- **Organizations** evaluating Wheels framework for their projects
+
+## 🏗️ Architecture Overview
+
+### MVC Structure
+```
+app/
+├── controllers/          # Application controllers
+│   ├── Controller.cfc   # Base controller with security
+│   ├── Main.cfc        # Home page controller
+│   ├── Sessions.cfc    # Authentication controller
+│   ├── Register.cfc    # User registration
+│   ├── PasswordResets.cfc # Password management
+│   ├── Accounts.cfc    # User account management
+│   └── admin/          # Admin controllers
+├── models/             # Data models
+│   ├── User.cfc        # User model with authentication
+│   ├── Role.cfc        # Role model
+│   ├── Permission.cfc  # Permission model
+│   └── Auditlog.cfc    # Audit logging
+|── global/             # application-wide globally accessible functions
+├── views/              # Presentation layer
+├── mailers/            # Email templates
+└── plugins/            # Third-party plugins
+```
+
+### Key Design Principles
+- **Convention over Configuration** following Rails-inspired patterns
+- **Security by Default** with built-in protections
+- **RESTful Design** for clean URLs and API structure
+- **Separation of Concerns** with clear MVC boundaries
+
+## 🛠️ Technology Stack
+
+### Backend
+- **Wheels 3.x** - MVC Framework
+- **ColdFusion 2018+** or **Lucee 5.3+** - CFML Engine
+- **Database** - MySQL, PostgreSQL, Microsoft SQL Server, Oracle, or H2
+- **WireBox** - Dependency injection
+- **TestBox** - Testing framework
+
+### Frontend
+- **Bootstrap 4** - UI Framework
+- **jQuery** - JavaScript utilities
+- **Font Awesome** - Icons
+
+### Development Tools
+- **CommandBox** - Package management & server
+- **ForgeBox** - Package repository
+
+## 📦 Quick Start
+
+### Prerequisites
+- **CommandBox** - Latest version
+- **CFML Engine**: Choose one of the following:
+  - Adobe ColdFusion 2018+ 
+  - Lucee 5.3+ (recommended for development)
+- **Database Engine**: Choose one of the following:
+  - MySQL 5.7+ or 8.0+
+  - PostgreSQL 10+
+  - Microsoft SQL Server 2016+
+  - Oracle Database 12c+
+  - H2 Database (for development/testing)
+
+### Installation
+```bash
+# Clone the repository
+git clone [repository-url]
+cd cfwheels-example-app
+
+# Install dependencies
+box install
+
+# Start the server
+box server start
+```
+
+### Environment Configuration
+1. Copy `.env.example` to `.env`
+2. Configure database settings based on your chosen database:
+
+#### MySQL Configuration
+```bash
+DB_TYPE=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=exampleapp
+DB_USER=youruser
+DB_PASSWORD=yourpassword
+```
+
+#### PostgreSQL Configuration
+```bash
+DB_TYPE=postgresql
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=exampleapp
+DB_USER=youruser
+DB_PASSWORD=yourpassword
+```
+
+#### Microsoft SQL Server Configuration
+```bash
+DB_TYPE=mssql
+DB_HOST=localhost
+DB_PORT=1433
+DB_NAME=exampleapp
+DB_USER=youruser
+DB_PASSWORD=yourpassword
+```
+
+#### Oracle Configuration
+```bash
+DB_TYPE=oracle
+DB_HOST=localhost
+DB_PORT=1521
+DB_NAME=exampleapp
+DB_USER=youruser
+DB_PASSWORD=yourpassword
+```
+
+#### H2 Configuration (Development)
+```bash
+DB_TYPE=h2
+DB_HOST=localhost
+DB_PORT=9092
+DB_NAME=exampleapp
+DB_USER=sa
+DB_PASSWORD=
+```
+
+## 🗄️ Database Structure
+
+### Core Tables
+- **users** - User accounts with authentication fields
+- **roles** - User roles for RBAC
+- **permissions** - Individual permissions
+- **rolepermissions** - Many-to-many between roles and permissions
+- **userpermissions** - User-specific permission overrides
+- **auditlogs** - Security audit trail
+- **settings** - Application configuration
+
+### Database Compatibility Notes
+- **MySQL**: Full feature support with optimized queries
+- **PostgreSQL**: Full feature support with JSON field capabilities
+- **SQL Server**: Full feature support including Windows Authentication options
+- **Oracle**: Full feature support with enterprise-grade performance
+- **H2**: Ideal for development and testing environments
+
+## 🔐 Authentication Flow
+
+### Registration Process
+1. User fills registration form
+2. System creates unverified user account
+3. Verification email sent with unique token
+4. User clicks verification link
+5. Account activated and user can login
+
+### Login Process
+1. User submits credentials
+2. System validates against database
+3. Session created with user data
+4. Permissions loaded based on role
+5. User redirected to appropriate dashboard
+
+## 🎛️ Admin Panel Features
+
+### User Management Interface
+- **User List**: Paginated table with search and filtering
+- **User Actions**: Edit, delete, reset password, assume identity
+- **Bulk Operations**: Role assignment, status changes
+- **Audit Trail**: View all user-related activities
+
+### Role Management
+- **Role CRUD**: Create, read, update, delete roles
+- **Permission Assignment**: Grant/revoke permissions per role
+- **User Assignment**: Assign roles to users
+
+## 🛡️ Security Implementation
+
+### Built-in Security Features
+- **CSRF Tokens** on all forms
+- **SQL Injection Prevention** via parameterized queries
+- **XSS Prevention** through output encoding
+- **Password Security** with bcrypt hashing
+- **Session Management** with secure cookies
+
+### Access Control
+- **Authentication Required** for protected routes
+- **Role-based Authorization** for admin functions
+- **Permission Checks** for sensitive operations
+- **Audit Logging** for compliance
+
+## 🧪 Testing
+
+### Test Structure
+```
+tests/
+├── Test.cfc              # Base test
+├── functions/            # Test utilities
+├── requests/             # HTTP tests
+└── models/               # Model tests
+```
+
+### Running Tests
+```bash
+# Run all tests
+box testbox run
+
+# Run specific test suite
+box testbox run --directory tests/requests/
+```
+
+## 🚀 Deployment
+
+### Production Considerations
+- Set `environment=production`
+- Configure production database with appropriate connection pooling
+- Set up SSL certificates
+- Configure email SMTP settings
+- Optimize database indexes for your chosen database engine
+
+## 📞 Support & Resources
+
+### Documentation
+- [Wheels Guides](https://wheels.dev/guides)
+- [Bootstrap Documentation](https://getbootstrap.com/docs/4.6/)
+
+### Community
+- [Wheels Web Community](https://wheels.dev/community)
+- [Wheels GitHub](https://github.com/wheels-dev/wheels)
+
+## 📄 License
+
+This example application is released under the Apache License 2.0.
+
 ---
 
-## Key Features
-
-- **User Registration & Verification:**  
-  Users can register, receive a verification email, and verify their account before logging in.
-
-- **Authentication:**  
-  Secure login and logout, with support for password resets and brute-force protection (noted as a TODO).
-
-- **Account Management:**  
-  Authenticated users can view and update their account details, including changing their password.
-
-- **Admin Panel:**  
-  Admin users can:
-  - Manage users (create, edit, disable, delete, recover, reset passwords, and even assume another user's identity for troubleshooting).
-  - Manage roles and permissions (RBAC: Role-Based Access Control).
-  - Assign and remove permissions for users and roles.
-  - View and filter audit logs for security and activity tracking.
-  - Manage application settings.
-
-- **Security:**  
-  - CSRF protection on all forms.
-  - Input validation and sanitization.
-  - Role and permission checks for all admin actions.
-  - Audit logging for sensitive actions.
-
-- **Email Notifications:**  
-  - Account verification and password reset emails.
-  - Admin password reset notifications.
-
-- **Modern UI:**  
-  - Uses Bootstrap for a clean, responsive design.
-  - All forms and navigation use Wheels helpers for consistency and security.
-
----
-
-## Intended Audience
-
-- **Developers** looking for a reference or starter app for Wheels 3.x.
-- **Teams** wanting to learn or demonstrate best practices in Wheels MVC development.
-
----
-
-## Summary
-
-**This application is not a complete, full-featured app, but rather a skeleton/example app built with Wheels 3.x. It is designed to help you get started and to showcase best practices in authentication, authorization, auditing, and modern web UI using Wheels.**
-
-[1]: https://wheels.dev/
-[2]: https://guides.cfwheels.org/introduction/readme/beginner-tutorial-hello-world
-[3]: https://guides.cfwheels.org/working-with-cfwheels/contributing-to-cfwheels
-[4]: https://github.com/wheels-dev/wheels/issues
+**Remember**: This is a **skeleton/example application** designed to showcase Wheels best practices. Use it as a starting point for your own projects and extend it according to your specific requirements.
