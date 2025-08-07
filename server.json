@@ -3,6 +3,10 @@
     "web":{
         "host":"localhost",
         "webroot":"public",
+        "http":{
+            "port":"8080",
+            "enable":true
+        },
         "rewrites":{
             "enable":true,
             "config":"public/urlrewrite.xml"

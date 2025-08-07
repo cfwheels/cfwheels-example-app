@@ -1,12 +1,16 @@
 # Wheels Example Application - Detailed Overview
 
-## 🚀 What This Is
+## What This Is
 
-This repository contains a **user management and authentication web application** built with the [Wheels](https://wheels.dev/) framework (version 3.x), a modern MVC framework inspired by Ruby on Rails. The app demonstrates best practices for Wheels 3.0, including security, conventions, and a modern UI using Bootstrap.
+This repository contains a **user management and authentication web application** built with the [Wheels](https://wheels.dev/) framework (version 3.0), a modern MVC framework inspired by Ruby on Rails. The app demonstrates best practices for Wheels 3.0, including security, conventions, and a modern UI using Bootstrap.
 
-**⚠️ Important**: This is **not a complete, full-featured app**, but rather a **skeleton/example app** built with Wheels 3.x. It is designed to help you get started and to showcase best practices in authentication, authorization, auditing, and modern web UI using Wheels.
+**Important**: This is **not a complete, full-featured app**, but rather a **skeleton/example app** built with Wheels 3.0. It is designed to help you get started and to showcase best practices in authentication, authorization, auditing, and modern web UI using Wheels.
 
-## ✨ Key Features
+## Installation
+
+See [Installation](https://github.com/wheels-dev/cfwheels-example-app/wiki/Installation)
+
+## Key Features
 
 ### User Registration & Verification
 - Users can register through a secure registration form
@@ -64,14 +68,14 @@ Admin users have access to comprehensive management features:
 - Mobile-responsive interface
 - Consistent styling across all pages
 
-## 🎯 Intended Audience
+## Intended Audience
 
 - **Developers** looking for a reference or starter app for Wheels 3.x
 - **Teams** wanting to learn or demonstrate best practices in Wheels MVC development
 - **Students** learning modern CFML web development
 - **Organizations** evaluating Wheels framework for their projects
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ### MVC Structure
 ```
@@ -101,12 +105,12 @@ app/
 - **RESTful Design** for clean URLs and API structure
 - **Separation of Concerns** with clear MVC boundaries
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend
-- **Wheels 3.x** - MVC Framework
-- **ColdFusion 2018+** or **Lucee 5.3+** - CFML Engine
-- **Database** - MySQL, PostgreSQL, Microsoft SQL Server, Oracle, or H2
+- **3.0.0-snapshot** - MVC Framework
+- **Lucee 5, Lucee 6** - CFML Engine
+- **Database** - MySQL, PostgreSQL, Microsoft SQL Server, Oracle, H2
 - **WireBox** - Dependency injection
 - **TestBox** - Testing framework
 
@@ -119,32 +123,19 @@ app/
 - **CommandBox** - Package management & server
 - **ForgeBox** - Package repository
 
-## 📦 Quick Start
+## Quick Start
 
 ### Prerequisites
 - **CommandBox** - Latest version
 - **CFML Engine**: Choose one of the following:
-  - Adobe ColdFusion 2018+ 
-  - Lucee 5.3+ (recommended for development)
+  - Adobe ColdFusion 
+  - Lucee 5, Lucee 6
 - **Database Engine**: Choose one of the following:
-  - MySQL 5.7+ or 8.0+
-  - PostgreSQL 10+
-  - Microsoft SQL Server 2016+
-  - Oracle Database 12c+
+  - MySQL
+  - PostgreSQL
+  - Microsoft SQL Server
+  - Oracle Database
   - H2 Database (for development/testing)
-
-### Installation
-```bash
-# Clone the repository
-git clone [repository-url]
-cd cfwheels-example-app
-
-# Install dependencies
-box install
-
-# Start the server
-box server start
-```
 
 ### Environment Configuration
 1. Copy `.env.example` to `.env`
@@ -200,7 +191,7 @@ DB_USER=sa
 DB_PASSWORD=
 ```
 
-## 🗄️ Database Structure
+## Database Structure
 
 ### Core Tables
 - **users** - User accounts with authentication fields
@@ -211,14 +202,7 @@ DB_PASSWORD=
 - **auditlogs** - Security audit trail
 - **settings** - Application configuration
 
-### Database Compatibility Notes
-- **MySQL**: Full feature support with optimized queries
-- **PostgreSQL**: Full feature support with JSON field capabilities
-- **SQL Server**: Full feature support including Windows Authentication options
-- **Oracle**: Full feature support with enterprise-grade performance
-- **H2**: Ideal for development and testing environments
-
-## 🔐 Authentication Flow
+## Authentication Flow
 
 ### Registration Process
 1. User fills registration form
@@ -234,7 +218,7 @@ DB_PASSWORD=
 4. Permissions loaded based on role
 5. User redirected to appropriate dashboard
 
-## 🎛️ Admin Panel Features
+## Admin Panel Features
 
 ### User Management Interface
 - **User List**: Paginated table with search and filtering
@@ -247,7 +231,7 @@ DB_PASSWORD=
 - **Permission Assignment**: Grant/revoke permissions per role
 - **User Assignment**: Assign roles to users
 
-## 🛡️ Security Implementation
+## Security Implementation
 
 ### Built-in Security Features
 - **CSRF Tokens** on all forms
@@ -262,7 +246,7 @@ DB_PASSWORD=
 - **Permission Checks** for sensitive operations
 - **Audit Logging** for compliance
 
-## 🧪 Testing
+## Testing
 
 ### Test Structure
 ```
@@ -282,26 +266,17 @@ box testbox run
 box testbox run --directory tests/requests/
 ```
 
-## 🚀 Deployment
-
-### Production Considerations
-- Set `environment=production`
-- Configure production database with appropriate connection pooling
-- Set up SSL certificates
-- Configure email SMTP settings
-- Optimize database indexes for your chosen database engine
-
-## 📞 Support & Resources
+## Support & Resources
 
 ### Documentation
 - [Wheels Guides](https://wheels.dev/guides)
-- [Bootstrap Documentation](https://getbootstrap.com/docs/4.6/)
+- [Wheels Api Reference](https://wheels.dev/api/v3.0.0)
 
 ### Community
 - [Wheels Web Community](https://wheels.dev/community)
 - [Wheels GitHub](https://github.com/wheels-dev/wheels)
 
-## 📄 License
+## License
 
 This example application is released under the Apache License 2.0.
 
